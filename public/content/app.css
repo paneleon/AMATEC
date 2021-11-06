@@ -1,0 +1,11 @@
+/*CSS*/
+
+.navbar-color {
+    background-color: rgb(23, 55, 86);
+}
+
+.logo-style {
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+}
