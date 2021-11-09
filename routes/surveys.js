@@ -10,4 +10,10 @@ let Survey = require('../models/survey');
 /* GET for survey list - READ operation. */
 router.get('/', surveysController.displaySurveys);
 
+/* GET for displaying the Add Page - CREATE OPERATION */
+router.get('/add-survey', surveysController.displayAddPage);
+
+/* POST for processing the Add Page */
+router.post('/add-survey', surveysController.processAddPage);
+
 module.exports = router;

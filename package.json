@@ -20,6 +20,7 @@
     "jquery": "^3.6.0",
     "mongoose": "^6.0.12",
     "morgan": "~1.9.1",
+    "nodemon": "^2.0.15",
     "popper.js": "^1.16.1"
   },
   "description": "Survey Site Group Project for COMP229",
