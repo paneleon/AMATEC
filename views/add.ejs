@@ -1,0 +1,36 @@
+<%- include partials/header.ejs %>
+
+<%- include partials/navigation.ejs %>
+
+
+<!-- Content for the add page-->
+<div class="container" id="addDiv">
+    <div class="row">
+        <div class="offset-md-3 col md-6">
+            <%- include partials/title.ejs %><br>
+            <form class="form" method="POST">
+            <div class="form-group">
+                <label for="nameTextField">Name</label><br>
+                <input type="text" class="form-class" size="40" id="nameTextField" placeholder="Enter the name"
+                name="name" required>
+            </div><br>
+
+            <div class="form-group">
+                <label for="descTextArea">Description</label><br>
+                <textarea id="descTextArea" cols="50" rows="5" name="description" placeholder="Enter the description..."></textarea>
+            </div><br>
+
+            <button class="btn btn-primary" type="submit">
+                <i class="fas fa-edit"></i> Submit
+            </button>
+            <a href="/surveys" class="btn btn-warning"><i class="fas fa-undo"></i> Cancel</a>
+
+        </form>
+        </div>
+    </div>
+</div>
+
+
+<%- include partials/bottom_nav.ejs %>
+
+<%- include partials/footer.ejs %>
