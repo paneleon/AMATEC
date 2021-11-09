@@ -10,10 +10,6 @@ router.get('/home', (req, res, next) => {
   res.render('index', { title: 'Home' });
 });
 
-router.get('/surveys', (req, res, next) => {
-  res.render('index', { title: 'Surveys' });
-});
-
 router.get('/coming-soon', (req, res, next) => {
   res.render('index', {title: 'Coming Soon'})
 });
@@ -23,5 +19,3 @@ router.get('/contact', (req, res, next) => {
 });
 
 module.exports = router;
-
-// comment

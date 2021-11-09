@@ -1,0 +1,36 @@
+<%- include partials/header.ejs %>
+<%- include partials/navigation.ejs %>
+
+<!-- Main Content -->
+<main class="container">
+    <div class="row">
+        <div class="col-md-offset-3 col-md-14">
+            <%- include partials/title.ejs %>
+            <br />
+            <table class="table table-bordered table-striped table-hover">
+                <!-- Header Row-->
+                <tr>
+                    <th class="text-center">#</th>
+                    <th class="text-center">Name</th>
+                    <th class="text-center">Description</th>
+                </tr>
+
+                <!-- Repeatable Template Row -->
+
+                <% for(let count = 0; count < SurveyList.length; count++) { %>
+                    <tr>
+                        <td class="text-center"><%= count + 1 %></td>
+                        <td class="text-center"><%= SurveyList[count].name %></td>
+                        <td class="text-center"><%= SurveyList[count].description %></td>
+                        
+                    </tr>
+                <% } %>
+
+            </table>
+        </div>
+    </div>
+</main>
+
+<%- include partials/bottom_nav.ejs %>
+
+<%- include partials/footer.ejs %>
