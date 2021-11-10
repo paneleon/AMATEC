@@ -3,6 +3,7 @@ let router = express.Router;
 let mongoose = require('mongoose');
 
 let db = require('../config/db');
+const survey = require('../models/survey');
 let Survey = require('../models/survey');
 
 // Display survey list
