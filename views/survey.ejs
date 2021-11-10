@@ -22,7 +22,8 @@
                         <td class="text-center"><%= count + 1 %></td>
                         <td class="text-center"><%= SurveyList[count].name %></td>
                         <td class="text-center"><%= SurveyList[count].description %></td>
-                        
+                        <td class="text-center"><a class="btn btn-light" href="/surveys/edit/<%=SurveyList[count]._id %>">Edit</a></td>
+                        <td class="text-center"><a class="btn btn-dark" href="/surveys/delete/<%=SurveyList[count]._id %>">Delete</a></td> 
                     </tr>
                 <% } %>
 
@@ -34,3 +35,4 @@
 <%- include partials/bottom_nav.ejs %>
 
 <%- include partials/footer.ejs %>
+
