@@ -26,6 +26,15 @@
     width: auto;
 }
 
+/*****This class is attached to the Confirmation warning since we did not use btn-danger
+If removed or commented, the 'Are You Sure' warning will break.
+Added dummy style to get rid of empty class warning
+*/
+.delete {
+    box-shadow: 0.1, 0.1, 0.1, white
+}
+
+
 /* .form-class {
     padding: 5px;
     border-radius: 5px;

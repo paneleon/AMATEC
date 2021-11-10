@@ -1,25 +1,20 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const router = express.Router();
 
-/* GET home page. */
-router.get('/', (req, res, next) => {
-  res.render('index', { title: 'Home' });
-});
+const indexController = require('../controllers/index');
 
-router.get('/home', (req, res, next) => {
-  res.render('index', { title: 'Home' });
-});
+/* GET Home page. */
+router.get('/', indexController.displayHomePage);
+router.get('/home', indexController.displayHomePage);
 
-router.get('/add-survey', (req, res, next)=> {
-  res.render('add', { title: 'Add Survey' });
-});
+/* GET Coming Soon Page. */
+router.get('/coming-soon', indexController.displayComingSoon);
 
-router.get('/coming-soon', (req, res, next) => {
-  res.render('index', {title: 'Coming Soon'})
-});
-
-router.get('/contact', (req, res, next) => {
-  res.render('index', { title: 'Contact' });
-});
+/* GET Contact Us Page. */
+/*
+  Right now this redirects to "coming soon page" in controller
+  Will need to change later!
+ */
+router.get('/contact', indexController.displayContactPage);
 
 module.exports = router;

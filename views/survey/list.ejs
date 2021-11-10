@@ -1,13 +1,17 @@
-<%- include partials/header.ejs %>
-<%- include partials/navigation.ejs %>
+<%- include ../partials/header.ejs %>
+<%- include ../partials/navigation.ejs %>
 
 <!-- Main Content -->
 <main class="container">
     <div class="row">
         <div class="col-md-offset-3 col-md-14">
-            <%- include partials/title.ejs %>
+            <%- include ../partials/title.ejs %>
             <br />
             <table class="table table-bordered table-striped table-hover">
+                <!-- Add Survey Button -->
+                <a class="btn btn-light btn-outline-dark" href="/surveys/add">
+                    <i class="fas fa-plus-cirlce"></i> Create New Survey 
+                </a> <br><br>
                 <!-- Header Row-->
                 <tr>
                     <th class="text-center">#</th>
@@ -24,7 +28,7 @@
                         <td class="text-center"><%= SurveyList[count].description %></td>
                         
                         <td class="text-center"><a class="btn btn-light" href="/surveys/edit/<%=SurveyList[count]._id %>">Edit</a></td>
-                        <td class="text-center"><a class="btn btn-dark" href="/surveys/delete/<%=SurveyList[count]._id %>">Delete</a></td> 
+                        <td class="text-center"><a class="btn btn-dark delete" href="/surveys/delete/<%=SurveyList[count]._id %>">Delete</a></td> 
                     </tr>
                 <% } %>
 
@@ -33,7 +37,7 @@
     </div>
 </main>
 
-<%- include partials/bottom_nav.ejs %>
+<%- include ../partials/bottom_nav.ejs %>
 
-<%- include partials/footer.ejs %>
+<%- include ../partials/footer.ejs %>
 
