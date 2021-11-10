@@ -10,6 +10,10 @@ router.get('/home', (req, res, next) => {
   res.render('index', { title: 'Home' });
 });
 
+router.get('/add-survey', (req, res, next)=> {
+  res.render('add', { title: 'Add Survey' });
+});
+
 router.get('/coming-soon', (req, res, next) => {
   res.render('index', {title: 'Coming Soon'})
 });
