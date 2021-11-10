@@ -20,7 +20,7 @@ module.exports.displaySurveys = (req, res, next) => {
 
 // Display add page
 module.exports.displayAddPage = (req, res, next) => {
-    res.render('surveys/add', { title: 'Add Survey'});
+    res.render('survey/add', { title: 'Add Survey'});
 };
 
 // Process add page
