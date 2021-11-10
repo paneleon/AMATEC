@@ -16,4 +16,13 @@ router.get('/add-survey', surveysController.displayAddPage);
 /* POST for processing the Add Page */
 router.post('/add-survey', surveysController.processAddPage);
 
+/* GET for displaying the Edit Page - UPDATE OPERATION */
+router.get('/edit-survey/:id', surveysController.displayEditPage);
+
+/* POST for processing the Edit Page */
+router.post('/edit-survey/:id', surveysController.processEditPage);
+
+/* GET for performing the Deletion - DELETE OPERATION */
+router.get('/delete-survey/:id', surveysController.performDeletion);
+
 module.exports = router;
