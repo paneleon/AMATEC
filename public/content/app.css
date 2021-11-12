@@ -1,5 +1,16 @@
 /*CSS*/
 
+a {
+    text-decoration: none;
+    color: #37d1d9;
+}
+
+.title {
+    margin: 3% 0;
+    font-size: 3rem;
+    text-align: center;
+}
+
 .navbar-color {
     /* background-color: rgb(23, 55, 86); */
     background: rgb(2,0,36);
@@ -9,6 +20,10 @@
 .footer-color {
     background: rgb(2,0,36);
     background: radial-gradient(ellipse at bottom, #21a9b0, #192f43, #071118);
+}
+
+footer p {
+    color: #4b7e96 !important;
 }
 
 .copyright {
@@ -48,3 +63,48 @@ Added dummy style to get rid of empty class warning
 
 } */
 
+/* table.surveys-list tr {
+    padding-bottom: 5%;
+    border-bottom: 1px solid gray;
+} */
+
+.survey {
+    margin: 5% auto;
+    border-bottom: 1px solid gray;
+}
+
+.survey-description {
+    width: 70%;
+    margin-right: 15%;
+}
+
+.survey-buttons {
+    margin-left: 10%;
+    float: right;
+}
+
+.survey h3 {
+    margin: 2% auto;
+}
+
+.survey p {
+    margin: 2% auto;
+}
+
+.circle {
+    border-radius: 50%;
+    background-color: #21a9b0;
+    color: white;
+    min-width: 24px;
+    height: 24px;
+    padding: 4px 10px;
+    text-align: center;
+    font-size: 18px;
+    border: 3px solid #21a9b0;
+}
+
+
+.btn {
+    min-width: 80px !important;
+    margin: 5px 0;
+}
