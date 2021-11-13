@@ -4,8 +4,7 @@ let mongoose = require('mongoose');
 let surveyModel = mongoose.Schema({
     // id: Number,
     name: String,
-    description: String,
-    
+    description: String,    
 },
 {
     collection: "surveys"

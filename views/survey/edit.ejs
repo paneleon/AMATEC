@@ -1,0 +1,46 @@
+<%- include ../partials/header.ejs %>
+
+<%- include ../partials/navigation.ejs %>
+
+<!-- Content for the Edit Page -->
+<body id="editBody">
+    <div class="container">
+        <div class="row">
+            <div class="offset-md-3 col-md-6">
+                <h1 class="title"><%= title %></h1>
+
+                <form class="form" method="POST">
+                    <div class="form-group"><label for="nameTextField">Name</label>
+                    <input type="text" class="form-control"
+                    id="nameTextField"
+                    placeholder="Enter the Name"
+                    name="name"
+                    value="<%= surveys.name %>"
+                    required>
+                    </div>
+
+                    <div class="form-group"><label for="descriptionTextField">Description</label>
+                    <input type="text" class="form-control"
+                    id="descriptionTextField"
+                    placeholder="Enter the Description"
+                    name="description"
+                    value="<%= surveys.description %>"
+                    required>
+                    </div> <br>
+                    <button class="btn btn-primary" type="submit" id="editBtn">
+                        <i class="fas fa-edit"></i>Submit
+                    </button>
+
+                    <a href="/surveys" class="btn btn-warning" id="deleteBtn">
+                        <i class="fas fa-undo"></i>Cancel
+                    </a>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+
+
+<%- include ../partials/bottom_nav.ejs %>
+
+<%- include ../partials/footer.ejs %>

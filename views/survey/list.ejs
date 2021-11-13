@@ -1,0 +1,44 @@
+<%- include ../partials/header.ejs %>
+<%- include ../partials/navigation.ejs %>
+
+<!-- Main Content -->
+<main class="container">
+    <div class="row">
+        <div class="col-md-offset-3 col-md-14">
+            <%- include ../partials/title.ejs %>
+            <br />
+                  
+            <a class="btn btn-light btn-outline-dark" href="/surveys/add">
+                    <i class="fas fa-plus-cirlce"></i> Create New Survey 
+                </a> <br><br>
+
+                <table class="surveys-list">
+
+                <!-- Repeatable Survey Template Div -->
+                <% for(let count = 0; count < SurveyList.length; count++) { %>
+                <tr class="survey">
+                <td class="survey-description">
+                    <h3><span class="circle"><%= count + 1 %></span>  <a><%= SurveyList[count].name %><a/></h3>
+                    <p><%= SurveyList[count].description %></p>
+                    
+                </td>
+                <td class="survey-buttons">
+                    <a class="btn btn-light" href="/surveys/edit/<%=SurveyList[count]._id %>">Edit</a>
+                    <a class="btn btn-dark delete" href="/surveys/delete/<%=SurveyList[count]._id %>">Delete</a>
+                    
+                </td>
+                </tr>
+                
+                    
+                <% } %>
+                
+                </table>
+                
+        </div>
+    </div>
+</main>
+
+<%- include ../partials/bottom_nav.ejs %>
+
+<%- include ../partials/footer.ejs %>
+
