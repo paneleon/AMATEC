@@ -16,7 +16,7 @@ module.exports.displayHomePage = (req, res, next) => {
 
 // Contact us Page 
 module.exports.displayContactPage = (req, res, next) => {
-    res.render('templates/coming-soon', { title: 'Contact' });
+    res.render('templates/contact', { title: 'Contact' });
 }
 
 // Coming Soon Page (Placeholder)
