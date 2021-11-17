@@ -17,4 +17,14 @@ router.get('/coming-soon', indexController.displayComingSoon);
  */
 router.get('/contact', indexController.displayContactPage);
 
+router.get('/login', indexController.displayLoginPage);
+
+router.post('/login', indexController.loginUser);
+
+router.get('/register', indexController.displayRegisterPage);
+
+// router.post('/register', indexController);
+
+router.get('/logout', indexController.logoutUser);
+
 module.exports = router;
