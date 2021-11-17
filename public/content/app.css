@@ -45,6 +45,10 @@ footer p {
     padding-bottom: 90px;
 }
 
+.card {
+    display: inline-block;
+}
+
 
 /*****This class is attached to the Confirmation warning since we did not use btn-danger
 If removed or commented, the 'Are You Sure' warning will break.
