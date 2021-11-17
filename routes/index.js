@@ -11,10 +11,6 @@ router.get('/home', indexController.displayHomePage);
 router.get('/coming-soon', indexController.displayComingSoon);
 
 /* GET Contact Us Page. */
-/*
-  Right now this redirects to "coming soon page" in controller
-  Will need to change later!
- */
 router.get('/contact', indexController.displayContactPage);
 
 router.get('/login', indexController.displayLoginPage);
