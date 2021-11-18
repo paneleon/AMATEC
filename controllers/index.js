@@ -11,22 +11,22 @@ const { User } = require('../models/user');
 
 // Landing Page ('/' or '/home')
 module.exports.displayHomePage = (req, res, next) => {
-    res.render('templates/home', { title: 'Home' });
+    res.render('templates/home', { title: 'Home', displayName: req.user ? req.user.displayName: ''});
 }
 
 // Contact us Page 
 module.exports.displayContactPage = (req, res, next) => {
-    res.render('templates/contact', { title: 'Contact' });
+    res.render('templates/contact', { title: 'Contact', displayName: req.user ? req.user.displayName: '' });
 }
 
 // Coming Soon Page (Placeholder)
 module.exports.displayComingSoon = (req, res, next) => {
-    res.render('templates/coming-soon', {title: 'Coming Soon'} );
+    res.render('templates/coming-soon', {title: 'Coming Soon', displayName: req.user ? req.user.displayName: ''} );
 }
 
 
 module.exports.displayLoginPage = (req, res, next) => {
-    res.render('auth/login', {title: "", messages: ""});
+    res.render('auth/login', {title: "", messages: "", displayName: req.user ? req.user.displayName: ''});
 }
 
 module.exports.loginUser = async (req, res, next) => {

@@ -13,14 +13,14 @@ module.exports.displaySurveys = (req, res, next) => {
         if (error){
             return console.log(error);
         } else {
-            res.render("survey/list", {title: "Surveys", SurveyList: surveyList})
+            res.render("survey/list", {title: "Surveys", SurveyList: surveyList,  displayName: req.user ? req.user.displayName : ''});
         }
     })
 }
 
 // Display add page
 module.exports.displayAddPage = (req, res, next) => {
-    res.render('survey/add', { title: 'Add Survey'});
+    res.render('survey/add', { title: 'Add Survey',  displayName: req.user ? req.user.displayName : ''});
 };
 
 // Process add page
