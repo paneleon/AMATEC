@@ -60,7 +60,7 @@
 
           <!-- Login/Logout -->
          <% if(typeof displayName == 'string' && displayName) { %>
-          <li class="navbar-text" style="color:aqua;"><i class="fas fa-user"></i> Welcome, <% displayName %>! </li>
+          <li class="navbar-text" style="color:aqua;"><i class="fas fa-user"></i> Welcome, <%= displayName %>! </li>
           <li class="nav-item"><a href="/logout" class="nav-link"><i class="fas fa-sign-in-alt"></i> Logout </a></li>
          <% } else { %>
           <li class="nav-item">
