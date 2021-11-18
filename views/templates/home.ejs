@@ -5,18 +5,21 @@
 
 
 <%- include ../partials/title.ejs %>
-<br><br>
 <div class="container-sm">
+    <div class="accordion" id="homeLogoDiv">
+        <img src="/assets/images/AMATEC_LOGO.jpeg" alt="AMATEC logo" id="homeLogo">
+    </div><br>
     <div class="accordion" id="accordionPanelsStayOpenExample">
         <div class="accordion-item">
             <h2 class="accordion-header" id="panelsStayOpen-headingOne">
-                <button class="accordion-button bg-secondary btn-outline-dark text-white" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
-                    Welcome to AMATEC surveys
+                <button class="accordion-button bg-secondary btn-outline-dark text-white" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" 
+                aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
+                    <strong>Welcome to AMATEC surveys</strong>
                 </button>
             </h2>
             <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingOne">
                 <div class="accordion-body">
-                    <strong>AMATEC's survey site covers all of your survey needs in one stop!</strong> Click the Surveys tab up at the top and select 'Surveys List' to get started.<br>Or head straight there by clicking <a href="/surveys">here</a>
+                    <strong>AMATEC's survey site covers all of your survey needs in one stop!</strong> Click the Surveys tab up at the top and select 'Surveys List' to get started.<br>Or head straight there by clicking <a href="/surveys" id="homeHere">here</a>
                 </div>
             </div>
         </div>
