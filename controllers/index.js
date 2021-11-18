@@ -41,7 +41,7 @@ module.exports.loginUser = async (req, res, next) => {
 
         if(!user){
             console.log("User login error");
-            res.flash('loginMessage', 'Authentication Error');
+            req.flash('loginMessage', 'Authentication Error');
             return res.redirect('/login');
         }
         req.login(user, (error) => {
@@ -59,6 +59,36 @@ module.exports.loginUser = async (req, res, next) => {
 
 module.exports.displayRegisterPage = (req, res, next) => {
     res.render('auth/register', {title: ""});
+}
+
+module.exports.registerUser = (req, res, next) => {
+    
+    let newUser = new User({
+        username: req.body.username,
+        email: req.body.email,
+        displayName: req.body.displayName
+    })
+
+    User.findOne({username: newUser.username})
+    .then(user => {
+        if (user !== null){
+            req.flash('registerMessage', "User already exists!");
+            res.redirect('/register')
+        }
+    })
+    
+    User.register(newUser, req.body.password, (error) => {
+        if (error) {
+            console.log("Error occurred: ", error);
+            if (error.name == "UserExistsError") {}
+        } else {
+            return passport.authenticate('local')(req, res, () => {
+                res.redirect('/');
+            })
+        }
+    })
+
+    
 }
 
 module.exports.logoutUser = (req, res, next) => {

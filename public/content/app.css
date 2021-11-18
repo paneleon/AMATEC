@@ -147,3 +147,7 @@ Added dummy style to get rid of empty class warning
     min-width: 80px !important;
     margin: 5px 0;
 }
+
+.card-img-top {
+    height: 270px;
+}
