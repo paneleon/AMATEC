@@ -9,7 +9,7 @@
             <br />
                   
             <a class="btn btn-light btn-outline-dark" href="/surveys/add">
-                    <i class="fas fa-plus-cirlce"></i> Create New Survey 
+                    <i class="fas fa-plus-circle"></i> Create New Survey 
                 </a> <br><br>
 
                 <table class="table" id="survey-list">
@@ -32,15 +32,15 @@
                     <td class="survey-description"><p><%= SurveyList[count].description %></p></td>
                     <td class="survey-expiry"><%= SurveyList[count].expirationDate%></td>
                     <td class="survey-expiry"><%= SurveyList[count].expirationDate%></td>
-                    <td class="survey-button-edit"><a class="btn btn-light" href="/surveys/edit/<%=SurveyList[count]._id %>">Edit</a></td>
-                    <td class="survey-button-delete"><a class="btn btn-dark" href="/surveys/delete/<%=SurveyList[count]._id %>">Delete</a></td>   
+                    <td class="survey-button-edit"><a class="btn btn-light btn-outline-dark" href="/surveys/edit/<%=SurveyList[count]._id %>">Edit</a></td>
+                    <td class="survey-button-delete"><a class="btn btn-danger" href="/surveys/delete/<%=SurveyList[count]._id %>">Delete</a></td>   
                 </tr>
                 
                     
                 <% } %>
                 
                 </table>
-                <a href="" class="btn btn-dark">Surveys Per Page</a>
+                <a href="" class="btn btn-dark btn-outline-light">Surveys Per Page</a>
                 
         </div>
     </div>
