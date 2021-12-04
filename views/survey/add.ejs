@@ -11,9 +11,9 @@
             <h1  class="title"><%= title %></h1>
             <form class="form" method="POST">
             <div class="form-group">
-                <label for="nameTextField">Name</label><br>
-                <input type="text" class="form-class" size="40" id="nameTextField" placeholder="Enter the name"
-                name="name" required>
+                <label for="titleTextField">Survey Title</label><br>
+                <input type="text" class="form-class" size="40" id="titleTextField" placeholder="Enter the title"
+                name="title" required>
             </div><br>
 
             <div class="form-group">
@@ -21,8 +21,28 @@
                 <textarea id="descTextArea" cols="50" rows="5" name="description" placeholder="Enter the description..."></textarea>
             </div><br>
 
+             <div class="form-group">
+                <label for="expiryDateInput">Expiration Date</label><br>
+               <input type="date" class="form-control"
+               value="0000-00-00" name="expirationDate" id="expiryDate">
+            </div><br>
+
+            <!-- To be added to schema-->
+             <div class="form-group">
+                <label for="numQuesTextField">Number of Questions</label><br>
+                <input type="text" class="form-class" size="40" id="numQuesTextField" placeholder="Enter the number of questions" name ="numQuestions"
+                required>
+            </div><br>
+
+             <!-- To be added to schema-->
+             <div class="form-group">
+                <label for="numOptionsTextField">Number of Options</label><br>
+                <input type="text" class="form-class" size="40" id="numOptionsTextField" placeholder="Enter the number of options" name ="numOptions"
+                required>
+            </div><br>
+
             <button class="btn btn-primary" type="submit">
-                <i class="fas fa-edit"></i> Submit
+                <i class="fas fa-edit"></i> Continue To Add Questions
             </button>
             <a href="/surveys" class="btn btn-warning"><i class="fas fa-undo"></i> Cancel</a>
 
