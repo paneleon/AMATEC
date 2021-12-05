@@ -196,3 +196,18 @@ module.exports.testSurveys = (req, res, next) => {
         }
     })
 }
+
+
+module.exports.displayPublished = (req, res, next) => 
+{
+    Survey.find((err, surveyList) => {
+        if (err)
+        {
+            return cosnole.log('Error retrieving surveys: ' + err);
+        }
+        else 
+        {
+            res.render('survey/published', {title: 'Surveys', SurveyList: surveyList, displayName: req.user ? req.user.displayName : ''});
+        }
+    })
+}
