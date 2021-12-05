@@ -1,8 +1,12 @@
 /*CSS*/
 
-a {
+a, a:visited {
     text-decoration: none;
     color: #37d1d9;
+}
+
+a:hover {
+    color: #10878d;
 }
 
 #homeHere {
@@ -152,4 +156,28 @@ Added dummy style to get rid of empty class warning
 
 .card-img-top {
     height: 270px;
+}
+
+.blue-btn {
+    background-color: #21a9b0 !important;
+    border-color: #37d1d9 !important;
+    color: white;
+}
+
+.blue-btn:hover {
+    background-color: #10878d !important;
+    border-color: #37d1d9 !important;
+    color: white;
+}
+
+.red-btn {
+    background-color: #C84B31 !important;
+    border-color:#C84B31 !important;
+    color: white;
+}
+
+.red-btn:hover {
+    background-color: #993824 !important;
+    border-color:#C84B31 !important;
+    color: white;
 }
