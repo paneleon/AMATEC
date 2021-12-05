@@ -16,23 +16,24 @@
                     <thead>
                 <!-- Table containing survey list -->
                         <tr class="survey-header">
-                            <th class="survey-number text-center"><h5>Survey #</h5></th>
-                            <th class="survey-name text-center"><h5>Survey Name</h5></th>
-                            <th class="survey-description text-center"><h5>Description</h5></th>
-                            <th class="survey-expiry text-center"><h5>Expires On</h5></th>
-                            <th class="survey-responses text-center"><h5>No. of Responses</h5></th>
+                            <th class="text-center col-1"><h5>Survey #</h5></th>
+                            <th class="text-center col-3"><h5>Survey Name</h5></th>
+                            <th class="text-center col-4"><h5>Description</h5></th>
+                            <th class="text-center col-2"><h5>Expires On</h5></th>
+                            <th class="text-center col-1"><h5>No. of Responses</h5></th>
+                            <th class="col-1"><h5></h5></th>
                         </tr>
                     </thead>
                 <!-- Repeatable Survey Template Div -->
                 <!-- <<TO-DO>> ADD EXPIRATION DATE AND NO. OF RESPONSES-->
                 <% for(let count = 0; count < SurveyList.length; count++) { %>
                 <tr class="survey">
-                    <td class="survey-number"><h3><span class="circle"><%= count + 1 %></span></td>
-                    <td class="survey-name"><h3><a><%= SurveyList[count].title %><a/></h3></h3></td>
-                    <td class="survey-description"><p><%= SurveyList[count].description %></p></td>
-                    <td class="survey-expiry"><%= SurveyList[count].expirationDate%></td>
-                    <td class="survey-button-edit"><a class="btn btn-light btn-outline-dark" href="/surveys/edit/<%=SurveyList[count]._id %>">Edit</a></td>
-                    <td class="survey-button-delete"><a class="btn btn-danger" href="/surveys/delete/<%=SurveyList[count]._id %>">Delete</a></td>   
+                    <td class="text-center col-1"><h3><span class="circle"><%= count + 1 %></span></td>
+                    <td class="text-center col-2"><h3><a><%= SurveyList[count].name %><a/></h3></h3></td>
+                    <td class="text-center col-5"><p><%= SurveyList[count].description %></p></td>
+                    <td class="text-center col-2"><%= new Intl.DateTimeFormat('en-GB', { year: 'numeric', month: 'long', day: '2-digit'}).format(SurveyList[count].expirationDate) %></td>
+                    <td class="text-center col-1"><a class="btn btn-light btn-outline-dark" href="/surveys/edit/<%=SurveyList[count]._id %>">Edit</a></td>
+                    <td class="text-center col-1"><a class="btn btn-danger" href="/surveys/delete/<%=SurveyList[count]._id %>">Delete</a></td>   
                 </tr>
                 
                     
