@@ -37,7 +37,7 @@
                     <td class="text-center col-2"><h3><a><%= SurveyList[count].name %><a/></h3></h3></td>
                     <td class="text-center col-6"><p><%= SurveyList[count].description %></p></td>
                     <td class="text-center col-2"><%= new Intl.DateTimeFormat('en-GB', { year: 'numeric', month: 'long', day: '2-digit'}).format(SurveyList[count].expirationDate) %></td>
-                    <td class="text-center col-1"><a class="btn btn-light btn-outline-dark" href="/surveys/complete/<%=SurveyList[count]._id %>">Do Survey</a></td>                    
+                    <td class="text-center col-1"><a class="btn btn-light btn-outline-dark" href="/surveys/doSurvey/<%=SurveyList[count]._id %>">Do Survey</a></td>                    
                 </tr>
                 
                     

@@ -211,3 +211,19 @@ module.exports.displayPublished = (req, res, next) =>
         }
     })
 }
+
+module.exports.displayDoSurveyPage = (req, res, next) => {
+    let id = req.params.id;
+
+    Survey.findById(id, (err, surveyToComplete) => {
+        if(err)
+        {
+            console.log('Error retrieving survey: ' + err);
+            res.end(err);
+        }
+        else
+        {
+            res.render('survey/doSurvey', {title: 'Complete Survey', survey: surveyToComplete, displayName: req.user ? req.user.displayName : ''});
+        }
+    });
+}

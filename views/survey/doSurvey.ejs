@@ -12,39 +12,30 @@
             <form class="form" method="POST">
             <div class="form-group">
                 <label for="titleTextField">Survey Title</label><br>
-                <input type="text" class="form-class" size="40" id="titleTextField" placeholder="Enter the title"
-                name="title" required>
+                <input type="text" class="form-class" size="40" id="titleTextField" placeholder="" readonly value=<%= survey.name %> 
+                name="title">
             </div><br>
 
             <div class="form-group">
                 <label for="descTextArea">Description</label><br>
-                <textarea id="descTextArea" cols="50" rows="5" name="description" placeholder="Enter the description..."></textarea>
+                <textarea id="descTextArea" cols="50" rows="5" name="description" placeholder="" readonly ><%= survey.description %></textarea>
             </div><br>
 
-             <div class="form-group">
-                <label for="expiryDateInput">Expiration Date</label><br>
-               <input type="date" class="form-control"
-               value="0000-00-00" name="expirationDate" id="expiryDate">
-            </div><br>
-
-            <!-- To be added to schema-->
-             <div class="form-group">
-                <label for="numQuesTextField">Number of Questions</label><br>
-                <input type="text" class="form-class" size="40" id="numQuesTextField" placeholder="Enter the number of questions" name ="numQuestions"
-                required>
-            </div><br>
-
-             <!-- To be added to schema-->
-             <div class="form-group">
-                <label for="numOptionsTextField">Number of Options</label><br>
-                <input type="text" class="form-class" size="40" id="numOptionsTextField" placeholder="Enter the number of options" name ="numOptions"
-                required>
-            </div><br>
-
+            <% for(let i = 0; i < survey.surveyQuestions.length; i++) { %>
+                <div class="form-group">
+                    <label for="titleTextField">Question <%= i + 1 %></label><br>
+                    <input type="text" class="form-class" size="40" id="titleTextField" placeholder="" readonly value=<%= survey.surveyQuestions[i].title %> 
+                        name="title">                
+                    <% for(let j = 0; j < survey.surveyQuestions[i].length; j++) { %>
+                        <input type="radio" name="question<%= i + 1 %>" value=<%= survey.surveyQuestions[i].options[j] %>>
+                    <% } %>
+                </div><br>
+            <% } %> 
+            
             <button class="btn btn-primary blue-btn" type="submit">
-                <i class="fas fa-edit"></i> Continue To Add Questions
+                <i class="fas fa-edit"></i> Submit Answers
             </button>
-            <a href="/surveys" class="btn btn-warning"><i class="fas fa-undo"></i> Cancel</a>
+            <a href="/surveys/published" class="btn btn-warning"><i class="fas fa-undo"></i> Cancel</a>
 
         </form>
         </div>

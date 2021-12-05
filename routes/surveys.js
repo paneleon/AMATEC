@@ -45,4 +45,7 @@ router.get('/delete/:id',  requireAuth, surveysController.performDeletion);
 /* GET for displaying the complete a survey Page - READ OPERATION */
 router.get('/published',  requireAuth, surveysController.displayPublished);
 
+/* GET for displaying the do survey page */
+router.get('/doSurvey/:id', requireAuth, surveysController.displayDoSurveyPage);
+
 module.exports = router;
