@@ -10,8 +10,8 @@
                 <h1 class="title"><%= title %></h1>
 
                 <form class="form" method="POST">
-                    <div class="form-group"><label for="nameTextField">Name</label>
-                    <input type="text" class="form-control"
+                    <div class="form-group p-2"><label for="nameTextField">Name</label>
+                    <input type="text" class="form-control pt-1"
                     id="nameTextField"
                     placeholder="Enter the Name"
                     name="name"
@@ -19,8 +19,8 @@
                     required>
                     </div>
 
-                    <div class="form-group"><label for="descriptionTextField">Description</label>
-                    <input type="textarea" class="form-control"
+                    <div class="form-group p-2"><label for="descriptionTextField">Description</label>
+                    <input type="textarea" class="form-control pt-1"
                     id="descriptionTextField"
                     placeholder="Enter the Description"
                     name="description"
@@ -30,30 +30,32 @@
 
                     
 
-                    <div class="form-group">
+                    <div class="form-group p-2">
                         <label for="expiryDateInput">Expiration Date</label><br>
 
                     <% if (surveys.expirationDate) { %>
-                    <input type="date" class="form-control"
+                    <input type="date" class="form-control pt-1"
                     name="expirationDate" id="expiryDate" value="<%= surveys.expirationDate.getFullYear() + '-' + ('0' + (surveys.expirationDate.getMonth() + 1)).slice(-2) + '-' + ('0' + surveys.expirationDate.getDate()).slice(-2) %>">
                     
                     <% } else { %>
-                        <input type="date" class="form-control" name="expirationDate" id="expiryDate">
+                        <input type="date" class="form-control pt-1" name="expirationDate" id="expiryDate">
                     <% } %>
                     </div><br>
                     
-
+                    
                     <% if (surveys.numberOfQuestions && surveys.numberOfOptions) { %>
+                    <div class="form-group p-2">
 
                     <% for(let i = 1; i <= surveys.numberOfQuestions; i++) { %>
 
-                        <input type="text" class="form-class" size="100" placeholder="Enter the Question"
+                        <input type="text" class="form-class pt-1" size="100" placeholder="Enter the Question"
                         name="<%= `question${i}` %>" required value="<%= surveys.surveyQuestions[i-1].title %>">
 
                         <% for(let j = 1; j <= surveys.numberOfOptions; j++) { %>
-                            <input type="text" class="form-class" size="50" class="questionOption" placeholder="Enter the Option"
+                            <input type="text" class="form-class pt-1" size="50" class="questionOption" placeholder="Enter the Option"
                             name="<%= `question${i}Option${j}` %>" required value="<%= surveys.surveyQuestions[i-1].options[j-1] %>">
                         <% } %>
+                    </div><br>
 
                     <% } %>
 
@@ -61,12 +63,13 @@
                         <h5>Sorry, the survey was created without any questions initially. 
                         If you want to add that functionality, please delete the current survey and create a new one.</h5>
                     <% } %>
+                     
 
-                    <button class="btn btn-primary" type="submit" id="editBtn">
+                    <button class="btn btn-primary blue-btn p-2" type="submit" id="editBtn">
                         <i class="fas fa-edit"></i>Submit
                     </button>
 
-                    <a href="/surveys" class="btn btn-warning" id="deleteBtn">
+                    <a href="/surveys" class="btn btn-warning p-2" id="deleteBtn">
                         <i class="fas fa-undo"></i>Cancel
                     </a>
                 </form>
