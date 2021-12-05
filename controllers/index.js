@@ -63,18 +63,20 @@ module.exports.displayRegisterPage = (req, res, next) => {
 
 module.exports.registerUser = (req, res, next) => {
     
+    User.findOne({username: req.body.username})
+    .then(user => {
+        if (user !== null){
+            // console.log("User already exists");
+            req.flash('registerMessage', "User already exists!");
+            return res.redirect('/register');
+            // return console.log("User already exists");
+        }
+    })
+
     let newUser = new User({
         username: req.body.username,
         email: req.body.email,
         displayName: req.body.displayName
-    })
-
-    User.findOne({username: newUser.username})
-    .then(user => {
-        if (user !== null){
-            req.flash('registerMessage', "User already exists!");
-            res.redirect('/register')
-        }
     })
     
     User.register(newUser, req.body.password, (error) => {

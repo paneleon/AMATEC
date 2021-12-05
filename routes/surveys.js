@@ -21,14 +21,17 @@ let Survey = require('../models/survey');
 /* GET for survey list - READ operation. */
 router.get('/', requireAuth, surveysController.displaySurveys);
 
-/* GET for survey list - READ operation. */
-router.get('/surveys', requireAuth, surveysController.displaySurveys);
+router.get('/test', surveysController.testSurveys);
 
 /* GET for displaying the Add Page - CREATE OPERATION */
 router.get('/add', requireAuth, surveysController.displayAddPage);
 
 /* POST for processing the Add Page */
 router.post('/add',  requireAuth, surveysController.processAddPage);
+
+router.get('/add/:surveyId/:numberOfQuestions/:numberOfOptions', requireAuth, surveysController.displayAddQuesionsPage)
+
+router.post('/add/:surveyId/:numberOfQuestions/:numberOfOptions', requireAuth, surveysController.addQuestions);
 
 /* GET for displaying the Edit Page - UPDATE OPERATION */
 router.get('/edit/:id',  requireAuth, surveysController.displayEditPage);
