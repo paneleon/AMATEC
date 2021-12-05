@@ -9,6 +9,10 @@ a:hover {
     color: #10878d;
 }
 
+body {
+    margin-bottom: 100px;
+}
+
 #homeHere {
     text-decoration: none;
     color:#006fee;
