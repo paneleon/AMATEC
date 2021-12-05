@@ -24,10 +24,11 @@
             <% for(let i = 0; i < survey.surveyQuestions.length; i++) { %>
                 <div class="form-group">
                     <label for="titleTextField">Question <%= i + 1 %></label><br>
-                    <input type="text" class="form-class" size="40" id="titleTextField" placeholder="" readonly value=<%= survey.surveyQuestions[i].title %> 
-                        name="title">                
-                    <% for(let j = 0; j < survey.surveyQuestions[i].length; j++) { %>
-                        <input type="radio" name="question<%= i + 1 %>" value=<%= survey.surveyQuestions[i].options[j] %>>
+                    <input type="text" class="form-class" size="40" id="titleTextField" placeholder="" value="<%= survey.surveyQuestions[i].title %>" readonly  
+                        name="title"><br>                
+                    <% for(let j = 0; j < survey.surveyQuestions[i].options.length; j++) { %>
+                        <input type="radio" id="optionRadio" name="question<%= i + 1 %>" value=<%= survey.surveyQuestions[i].options[j] %>>
+                        <label for="optionRadio"><%= survey.surveyQuestions[i].options[j] %></label><br>
                     <% } %>
                 </div><br>
             <% } %> 
