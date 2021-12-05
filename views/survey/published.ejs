@@ -39,7 +39,6 @@
                     <td class="survey-expiry col-4"><%= new Intl.DateTimeFormat('en-GB', { year: 'numeric', month: 'long', day: '2-digit'}).format(SurveyList[count].expirationDate) %></td>
                     <td class="survey-button-edit col-3"><a class="btn btn-light btn-outline-dark" href="/surveys/complete/<%=SurveyList[count]._id %>">Do Survey</a></td>                    
                 </tr>
-                <!--new Intl.DateTimeFormat('en-GB', { year: 'numeric', month: 'long', day: '2-digit'}).format(new Date())-->
                 
                     
                 <% } %>

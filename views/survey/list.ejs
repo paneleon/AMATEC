@@ -30,7 +30,7 @@
                     <td class="survey-number"><h3><span class="circle"><%= count + 1 %></span></td>
                     <td class="survey-name"><h3><a><%= SurveyList[count].title %><a/></h3></h3></td>
                     <td class="survey-description"><p><%= SurveyList[count].description %></p></td>
-                    <td class="survey-expiry"><%= SurveyList[count].expirationDate%></td>
+                    <td class="survey-expiry"><%= new Intl.DateTimeFormat('en-GB', { year: 'numeric', month: 'long', day: '2-digit'}).format(SurveyList[count].expirationDate) %></td>
                     <td class="survey-button-edit"><a class="btn btn-light btn-outline-dark" href="/surveys/edit/<%=SurveyList[count]._id %>">Edit</a></td>
                     <td class="survey-button-delete"><a class="btn btn-danger" href="/surveys/delete/<%=SurveyList[count]._id %>">Delete</a></td>   
                 </tr>
