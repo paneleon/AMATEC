@@ -20,7 +20,7 @@
                     </div>
 
                     <div class="form-group"><label for="descriptionTextField">Description</label>
-                    <input type="text" class="form-control"
+                    <input type="textarea" class="form-control"
                     id="descriptionTextField"
                     placeholder="Enter the Description"
                     name="description"
@@ -28,11 +28,22 @@
                     required>
                     </div> <br>
 
+                    
+
                     <div class="form-group">
                         <label for="expiryDateInput">Expiration Date</label><br>
+
+                    <% if (surveys.expirationDate) { %>
                     <input type="date" class="form-control"
                     name="expirationDate" id="expiryDate" value="<%= surveys.expirationDate.getFullYear() + '-' + ('0' + (surveys.expirationDate.getMonth() + 1)).slice(-2) + '-' + ('0' + surveys.expirationDate.getDate()).slice(-2) %>">
+                    
+                    <% } else { %>
+                        <input type="date" class="form-control" name="expirationDate" id="expiryDate">
+                    <% } %>
                     </div><br>
+                    
+
+                    <% if (surveys.numberOfQuestions && surveys.numberOfOptions) { %>
 
                     <% for(let i = 1; i <= surveys.numberOfQuestions; i++) { %>
 
@@ -44,6 +55,11 @@
                             name="<%= `question${i}Option${j}` %>" required value="<%= surveys.surveyQuestions[i-1].options[j-1] %>">
                         <% } %>
 
+                    <% } %>
+
+                   <% } else { %>
+                        <h5>Sorry, the survey was created without any questions initially. 
+                        If you want to add that functionality, please delete the current survey and create a new one.</h5>
                     <% } %>
 
                     <button class="btn btn-primary" type="submit" id="editBtn">
