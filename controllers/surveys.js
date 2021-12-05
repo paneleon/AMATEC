@@ -77,20 +77,47 @@ module.exports.processEditPage = (req,res,next) => {
 
     //TODO: CHECK USER ID
     let id = req.params.id;
-    let editedSurvey = Survey({
-        "_id": id,
-        "name": req.body.name,
-        "description": req.body.description
-    });
-    Survey.updateOne({_id: id}, editedSurvey, (err) => {
+
+    Survey.findById(id, (err, surveyToEdit) => {
         if(err)
         {
             console.log(err);
             res.end(err);
         }
-        else{
-            //refresh the survey list
-            res.redirect('/surveys');
+        else
+        {
+            let questions = []
+
+            for (let i = 1; i <= surveyToEdit.numberOfQuestions; i++){
+                let options = []
+                for (let j = 1; j <= surveyToEdit.numberOfOptions; j++){
+                    options.push(req.body[("question" + i + "Option" + j)])
+                }
+                questions.push({
+                    title: req.body[("question" + i)],
+                    options: options
+                })
+            }
+
+            let editedSurvey = Survey({
+                "_id": id,
+                "name": req.body.name,
+                "description": req.body.description,
+                "surveyQuestions": questions,
+                "expirationDate":  req.body.expirationDate
+            });
+
+            Survey.updateOne({_id: id}, editedSurvey, (err) => {
+                if(err)
+                {
+                    console.log(err);
+                    res.end(err);
+                }
+                else{
+                    //refresh the survey list
+                    res.redirect('/surveys');
+                }
+            });
         }
     });
 };

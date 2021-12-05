@@ -2,7 +2,7 @@ let mongoose = require('mongoose');
 
 // create a model class
 let surveyModel = mongoose.Schema({
-    title: String,
+    name: String,
     description: String,
     expirationDate: Date,
     createdBy: mongoose.Schema.Types.ObjectId,    
