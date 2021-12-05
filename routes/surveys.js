@@ -3,7 +3,6 @@ let router = express.Router();
 let mongoose = require('mongoose');
 
 let surveysController = require('../controllers/surveys');
-let questionsController = require('../controllers/questions');
 
 //helper function for guard purposes
 function requireAuth(req, res, next)
