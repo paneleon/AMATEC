@@ -29,7 +29,7 @@
                 <% for(let count = 0; count < SurveyList.length; count++) { %>
                 <tr class="survey">
                     <td class="text-center col-1"><h3><span class="circle"><%= count + 1 %></span></td>
-                    <td class="text-center col-2"><h3><a><%= SurveyList[count].name %><a/></h3></h3></td>
+                    <td class="text-center col-2"><h3><a><%= SurveyList[count].name %></a></h3></h3></td>
                     <td class="text-center col-5"><p><%= SurveyList[count].description %></p></td>
                     <td class="text-center col-2"><%= new Intl.DateTimeFormat('en-GB', { year: 'numeric', month: 'long', day: '2-digit'}).format(SurveyList[count].expirationDate) %></td>
                     <td class="text-center col-1"><a class="btn btn-light btn-outline-dark" href="/surveys/edit/<%=SurveyList[count]._id %>">Edit</a></td>
