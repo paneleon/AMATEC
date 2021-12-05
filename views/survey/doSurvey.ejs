@@ -11,24 +11,26 @@
             <h1  class="title"><%= title %></h1>
             <form class="form" method="POST">
             <div class="form-group">
-                <label for="titleTextField">Survey Title</label><br>
-                <input type="text" class="form-class" size="40" id="titleTextField" placeholder="" readonly value=<%= survey.name %> 
+                <label for="titleTextField" class="fs-4"><strong>Survey Title - </strong></label>
+                <input type="text" class="form-class do-survey-question fs-5" size="40" id="titleTextField" placeholder="" readonly value=<%= survey.name %> 
                 name="title">
             </div><br>
 
             <div class="form-group">
-                <label for="descTextArea">Description</label><br>
-                <textarea id="descTextArea" cols="50" rows="5" name="description" placeholder="" readonly ><%= survey.description %></textarea>
-            </div><br>
+                <label for="descTextArea" class="fs-4"><strong>Description - </strong></label><br>
+                <textarea id="descTextArea" class="do-survey-question" cols="50" rows="5" name="description" placeholder="" readonly ><%= survey.description %></textarea>
+            </div>
 
             <% for(let i = 0; i < survey.surveyQuestions.length; i++) { %>
                 <div class="form-group">
-                    <label for="titleTextField">Question <%= i + 1 %></label><br>
-                    <input type="text" class="form-class" size="40" id="titleTextField" placeholder="" value="<%= survey.surveyQuestions[i].title %>" readonly  
-                        name="title"><br>                
+                    <label for="titleTextField" class="fs-5"><strong>Question <%= i + 1 %> - </strong></label>
+                    <input type="text" class="form-class do-survey-question" size="40" id="titleTextField" placeholder="" value="<%= survey.surveyQuestions[i].title %>" readonly  
+                        name="title"><br><br>                
                     <% for(let j = 0; j < survey.surveyQuestions[i].options.length; j++) { %>
-                        <input type="radio" id="optionRadio" name="question<%= i + 1 %>" value=<%= survey.surveyQuestions[i].options[j] %>>
-                        <label for="optionRadio"><%= survey.surveyQuestions[i].options[j] %></label><br>
+                        <div class="form-check ms-4">
+                            <input type="radio" id="optionRadio" class="form-check-input" name="question<%= i + 1 %>" value=<%= survey.surveyQuestions[i].options[j] %>>
+                            <label class="form-check-label" for="optionRadio"><%= survey.surveyQuestions[i].options[j] %></label><br>
+                        </div>
                     <% } %>
                 </div><br>
             <% } %> 
