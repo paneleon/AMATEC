@@ -25,10 +25,17 @@ module.exports.displayAddPage = (req, res, next) => {
 
 // Process add page
 module.exports.processAddPage = (req, res, next) => {
+
     let newSurvey = Survey({
         "name": req.body.name,
-        "description": req.body.description
+        "description": req.body.description,
+        "expirationDate": req.body.expirationDate,
+        //TODO: USER ID
+        "numberOfQuestions": req.body.numQuestions,
+        "numberOfOptions": req.body.numOptions
     });
+
+    
     Survey.create(newSurvey, (err, Survey) => {
         if(err)
         {
@@ -37,14 +44,17 @@ module.exports.processAddPage = (req, res, next) => {
         }
         else
         {
-            // refresh the survey list
-            res.redirect('/surveys');
+            console.log("new id", Survey._id);
+            console.log("number of questions", Survey.numberOfQuestions);
+            res.redirect(`/surveys/add/${Survey._id}/${Survey.numberOfQuestions}/${Survey.numberOfOptions}`);
         }
     });
 };
 
 //Displaying edit page
 module.exports.displayEditPage = (req,res,next) => {
+
+    //TODO: CHECK USER ID
     let id = req.params.id;
 
     Survey.findById(id, (err, surveyToEdit) => {
@@ -64,6 +74,8 @@ module.exports.displayEditPage = (req,res,next) => {
 
 //Processing Edit Page
 module.exports.processEditPage = (req,res,next) => {
+
+    //TODO: CHECK USER ID
     let id = req.params.id;
     let editedSurvey = Survey({
         "_id": id,
@@ -85,6 +97,9 @@ module.exports.processEditPage = (req,res,next) => {
 
 //Deleting the Survey
 module.exports.performDeletion = (req, res, next) => {
+
+    //TODO: CHECK USER ID
+
     let id = req.params.id;
 
     Survey.remove({_id: id}, (err) => {
@@ -97,6 +112,60 @@ module.exports.performDeletion = (req, res, next) => {
         {
             //refresh the survey list
             res.redirect('/surveys');
+        }
+    })
+}
+
+
+module.exports.addQuestions = (req, res, next) => {
+
+    let surveyId = req.params.surveyId;
+    let numberOfQuestions = parseInt(req.params.numberOfQuestions);
+    let numberOfOptions = parseInt(req.params.numberOfOptions);
+
+    let questions = []
+
+    for (let i = 1; i <= numberOfQuestions; i++){
+        let options = []
+
+        for (let j = 1; j <= numberOfOptions; j++){
+            options.push(req.body[("question" + i + "Option" + j)])
+        }
+
+        questions.push({
+            title: req.body[("question" + i)],
+            options: options
+        })
+    }
+
+    console.log("questions", questions);
+    
+    Survey.findByIdAndUpdate(surveyId, { $push: { surveyQuestions: questions } }, (error, survey) => {
+        if(error)
+        {
+            console.log(error);
+            res.end(error);
+        }
+        else
+        {
+            console.log("updated survey", survey)
+            res.redirect('/surveys');
+        }
+    });
+}
+
+
+module.exports.displayAddQuesionsPage = (req, res, next) => {
+    res.render('survey/addQuestions', { title: 'Add Questions', numberOfQuestions: req.params.numberOfQuestions, numberOfOptions: req.params.numberOfOptions});
+};
+
+module.exports.testSurveys = (req, res, next) => {
+
+    Survey.find((error, surveys) => {
+        if (error){
+            return console.log(error);
+        } else {
+            return res.status(200).send(surveys); 
         }
     })
 }
