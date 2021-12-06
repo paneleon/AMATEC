@@ -13,7 +13,9 @@ module.exports.displaySurveys = (req, res, next) => {
         if (error){
             return console.log(error);
         } else {
-            res.render("survey/list", {title: "Surveys", SurveyList: surveyList,  displayName: req.user ? req.user.displayName : ''});
+            console.log("this is the user", req.user.displayName)
+            res.render("survey/list", {title: "Surveys", SurveyList: surveyList,  displayName: req.user ? req.user.displayName : '', 
+            errorMessage: "", loggedUserId: req.user._id});
         }
     })
 }
@@ -26,11 +28,13 @@ module.exports.displayAddPage = (req, res, next) => {
 // Process add page
 module.exports.processAddPage = (req, res, next) => {
 
+    console.log("this is the user", req.user);
+
     let newSurvey = Survey({
         "name": req.body.name,
         "description": req.body.description,
         "expirationDate": req.body.expirationDate,
-        //TODO: USER ID
+        "createdBy": req.user._id,
         "numberOfQuestions": req.body.numQuestions,
         "numberOfOptions": req.body.numOptions
     });
@@ -54,7 +58,6 @@ module.exports.processAddPage = (req, res, next) => {
 //Displaying edit page
 module.exports.displayEditPage = (req,res,next) => {
 
-    //TODO: CHECK USER ID
     let id = req.params.id;
 
     Survey.findById(id, (err, surveyToEdit) => {
@@ -66,8 +69,15 @@ module.exports.displayEditPage = (req,res,next) => {
         else
         {
             //show the edit view  
-            res.render('survey/edit', {title: 'Edit Survey', surveys:surveyToEdit,
-        displayName: req.user ? req.user.displayName: ''});
+            if (req.user._id == surveyToEdit.createdBy){
+                res.render('survey/edit', {title: 'Edit Survey', surveys:surveyToEdit, displayName: req.user ? req.user.displayName: ''});
+                console.log("all good with editing the survey");
+            } else {
+                console.log("you can't edit this survey");
+                // return res.render("survey/list", {title: "Surveys", SurveyList: surveyList,  displayName: req.user ? req.user.displayName : '', 
+                // errorMessage: "This Survey belongs to another user!"});
+                res.redirect('/surveys');
+            }
         }
     });
 };
@@ -129,18 +139,37 @@ module.exports.performDeletion = (req, res, next) => {
 
     let id = req.params.id;
 
-    Survey.remove({_id: id}, (err) => {
-        if(err)
+    Survey.findById(id, (error, survey) => {
+        if(error)
         {
-            console.log(err);
-            res.end(err);
-        }
-        else
-        {
-            //refresh the survey list
-            res.redirect('/surveys');
+            console.log(error);
+            res.end(error);
+        } else {
+
+            if (req.user._id == survey.createdBy){
+                Survey.remove({_id: id}, (err) => {
+                    if(err)
+                    {
+                        console.log(err);
+                        res.end(err);
+                    }
+                    else
+                    {
+                        //refresh the survey list
+                        res.redirect('/surveys');
+                    }
+                })
+            } else {
+                console.log("You can't delete this survey");
+                res.redirect('/surveys');
+
+                // return res.render("survey/list", {title: "Surveys", SurveyList: surveyList,  displayName: req.user ? req.user.displayName : '', 
+                // errorMessage: "This Survey belongs to another user!"});
+            }
         }
     })
+
+    
 }
 
 
