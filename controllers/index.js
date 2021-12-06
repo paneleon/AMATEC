@@ -26,7 +26,7 @@ module.exports.displayComingSoon = (req, res, next) => {
 
 
 module.exports.displayLoginPage = (req, res, next) => {
-    res.render('auth/login', {title: "", messages: "", displayName: req.user ? req.user.displayName: ''});
+    res.render('auth/login', {title: "", messages: "", displayName: req.user ? req.user.displayName: '', errorMessage: ""});
 }
 
 module.exports.loginUser = async (req, res, next) => {
@@ -41,12 +41,14 @@ module.exports.loginUser = async (req, res, next) => {
 
         if(!user){
             console.log("User login error");
-            req.flash('loginMessage', 'Authentication Error');
-            return res.redirect('/login');
+            // req.flash('loginMessage', 'Authentication Error');
+            // return res.redirect('/login');
+            return res.render('auth/login', { title: 'Login', messages: "", displayName: req.user ? req.user.displayName: '', errorMessage: "Please, check your username and password, and try again"});
         }
         req.login(user, (error) => {
             if (error){
                 console.log("Server error occurred ", error);
+                return res.render('auth/login', { title: 'Login', messages: "", displayName: req.user ? req.user.displayName: '', errorMessage: "Sorry, server error occured, try again"});
             }
             
             console.log("Successfully authenticated!");
@@ -58,7 +60,7 @@ module.exports.loginUser = async (req, res, next) => {
 }
 
 module.exports.displayRegisterPage = (req, res, next) => {
-    res.render('auth/register', {title: ""});
+    res.render('auth/register', {title: "", errorMessage: ""});
 }
 
 module.exports.registerUser = (req, res, next) => {
@@ -66,9 +68,12 @@ module.exports.registerUser = (req, res, next) => {
     User.findOne({username: req.body.username})
     .then(user => {
         if (user !== null){
-            // console.log("User already exists");
-            req.flash('registerMessage', "User already exists!");
-            return res.redirect('/register');
+            console.log("User already exists");
+            return res.render('auth/register', { title: 'Register', errorMessage: "The user with this username already exists"});
+
+            // Doesn't work for some reason     
+            // req.flash('registerMessage', "User already exists!");
+            // return res.redirect('/register');
             // return console.log("User already exists");
         }
     })

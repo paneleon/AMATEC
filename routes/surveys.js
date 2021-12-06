@@ -48,4 +48,8 @@ router.get('/published',  requireAuth, surveysController.displayPublished);
 /* GET for displaying the do survey page */
 router.get('/doSurvey/:id', requireAuth, surveysController.displayDoSurveyPage);
 
+router.post('/doSurvey/:id', requireAuth, surveysController.completeSurvey);
+
+router.get('/completed', requireAuth,  surveysController.displayCompletedSurveys)
+
 module.exports = router;

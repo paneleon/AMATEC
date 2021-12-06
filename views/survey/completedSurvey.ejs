@@ -27,8 +27,8 @@
                 <% for(let count = 0; count < CompletedSurvey.length; count++) { %>
                 <tr class="survey">
                     <td class="text-center col-1"><h3><span class="circle"><%= count + 1 %></span></td>
-                    <td class="text-center col-2"><h3><a><%= CompletedSurvey[count].completedBy %></a></h3></h3></td>
-                    <td class="text-center col-2"><h3><a><%= SurveyList[count].name %></a></h3></h3></td>
+                    <td class="text-center col-2"><h3><a><%= CompletedSurvey[count].completedByName %></a></h3></h3></td>
+                    <td class="text-center col-2"><h3><a><%= CompletedSurvey[count].surveyName %></a></h3></h3></td>
                     <td class="text-center col-1"><a class="btn btn-light btn-outline-dark" href="">View Result</a></td>
                 </tr>
                 <% } %>

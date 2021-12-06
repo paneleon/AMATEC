@@ -190,3 +190,8 @@ Added dummy style to get rid of empty class warning
     border-color:#C84B31 !important;
     color: white;
 }
+
+.error {
+    color: red;
+    padding: 10px;
+}
