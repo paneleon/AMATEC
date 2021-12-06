@@ -6,6 +6,7 @@ let db = require('../config/db');
 const survey = require('../models/survey');
 let Survey = require('../models/survey');
 let CompletedSurvey = require('../models/completedSurvey');
+const { User } = require('../models/user');
 
 // Display survey list
 module.exports.displaySurveys = (req, res, next) => {
@@ -282,7 +283,9 @@ module.exports.completeSurvey = (req, res, next) => {
             let newCompletedSurvey = CompletedSurvey({
                 "surveyId": surveyId,
                 "completedBy": userCompleted,
-                "answers":  answers
+                "answers":  answers,
+                "surveyName": survey.name,
+                "completedByName": req.user.displayName
             })
 
             CompletedSurvey.create(newCompletedSurvey, (error, completedSurvey) => {
@@ -295,6 +298,22 @@ module.exports.completeSurvey = (req, res, next) => {
                 }
             });
 
+        }
+    })
+}
+
+module.exports.displayCompletedSurveys = (req, res, next) => {
+
+    let userId = req.user._id;
+
+    CompletedSurvey.find({"completedBy": userId}, (error, completedSurveyList) => {
+        if (error){
+            console.log(error);
+            res.end(error);
+        } else {
+            console.log("completed surveys", completedSurveyList)
+            res.render("survey/completedSurvey", {title: "Your Completed Surveys", CompletedSurvey: completedSurveyList, 
+            displayName: req.user ? req.user.displayName : '', errorMessage: ""});
         }
     })
 }
