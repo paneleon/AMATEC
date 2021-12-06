@@ -5,6 +5,7 @@ let mongoose = require('mongoose');
 let db = require('../config/db');
 const survey = require('../models/survey');
 let Survey = require('../models/survey');
+let CompletedSurvey = require('../models/completedSurvey');
 
 // Display survey list
 module.exports.displaySurveys = (req, res, next) => {
@@ -255,4 +256,45 @@ module.exports.displayDoSurveyPage = (req, res, next) => {
             res.render('survey/doSurvey', {title: 'Complete Survey', survey: surveyToComplete, displayName: req.user ? req.user.displayName : ''});
         }
     });
+}
+
+module.exports.completeSurvey = (req, res, next) => {
+
+    let surveyId = req.params.id;
+    let userCompleted = req.user._id;
+    let answers = [];
+
+    Survey.findById(surveyId, (error, survey) => {
+        if (error){
+            return console.log(error);
+        } else {
+            let numberOfQuestions = survey.numberOfQuestions;
+            console.log("number of questions", numberOfQuestions);
+
+            for (let i = 0; i < numberOfQuestions; i++){
+
+                answers.push({
+                    "question": req.body["question" + (i + 1)][0],
+                    "answer": req.body["question" + (i + 1)][1]
+                })
+            }
+
+            let newCompletedSurvey = CompletedSurvey({
+                "surveyId": surveyId,
+                "completedBy": userCompleted,
+                "answers":  answers
+            })
+
+            CompletedSurvey.create(newCompletedSurvey, (error, completedSurvey) => {
+                if (error){
+                    console.log(error);
+                    res.end(error);
+                } else {
+                    console.log("sucessfully created completed survey", completedSurvey);
+                    res.redirect('/surveys');
+                }
+            });
+
+        }
+    })
 }
