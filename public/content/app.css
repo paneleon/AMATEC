@@ -89,6 +89,11 @@ footer p {
     min-width: 245px;
 }
 
+.do-survey-question {
+    border: none;
+    outline: none;
+    background-color: transparent;
+}
 
 /*****This class is attached to the Confirmation warning since we did not use btn-danger
 If removed or commented, the 'Are You Sure' warning will break.
