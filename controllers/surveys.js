@@ -70,7 +70,7 @@ module.exports.displayEditPage = (req,res,next) => {
         else
         {
             //show the edit view  
-            if (req.user._id == surveyToEdit.createdBy){
+            if (req.user._id.equals(surveyToEdit.createdBy)){
                 res.render('survey/edit', {title: 'Edit Survey', surveys:surveyToEdit, displayName: req.user ? req.user.displayName: ''});
                 console.log("all good with editing the survey");
             } else {
@@ -147,7 +147,7 @@ module.exports.performDeletion = (req, res, next) => {
             res.end(error);
         } else {
 
-            if (req.user._id == survey.createdBy){
+            if (req.user._id.equals(survey.createdBy)){
                 Survey.remove({_id: id}, (err) => {
                     if(err)
                     {
