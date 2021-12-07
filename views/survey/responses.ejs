@@ -1,6 +1,14 @@
 <%- include ../partials/header.ejs %>
 <%- include ../partials/navigation.ejs %>
 
+
+<% if (SurveyResponses.length === 0) { %>
+    <div>               
+        <h1 class="title fs-3">
+            Sorry... Looks like there have been no responses on this survey yet.  Check back later!
+        </h1>
+    </div>
+<% } else { %>
 <!-- Main Content -->
 <main class="container">
     <div class="row">
@@ -41,6 +49,7 @@
         </div>
     </div>
 </main>
+<% } %>
 
 <%- include ../partials/bottom_nav.ejs %>
 
