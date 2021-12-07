@@ -30,12 +30,11 @@
 
             <% for(let i = 0; i < completedSurvey.answers.length; i++) { %>
                 <div class="form-group">
-                    <label for="titleTextField" class="fs-5"><strong>Question <%= i + 1 %> - </strong></label>
-                    <input type="text" class="form-class readonly-textfield" id="titleTextField" placeholder="" value="<%= completedSurvey.answers[i].title %>" readonly  
-                        name="question<%= i + 1 %>"><br><br>                
+                    <label for="titleTextField" class="fs-5"><strong>Question <%= i + 1 %> - </strong></label><br>
+                    <textarea class="form-class readonly-textfield textarea-style" id="titleTextField" readonly name="question<%= i + 1 %>"><%= completedSurvey.answers[i].question %></textarea><br><br>                
                         <div class="form-check ms-4">
                          <label for="answerTextField" class="fs-5"><strong>Option Selected -  </strong></label>
-                            <input type="text" id="answerTextField" class="form-answers" name="answer<%= i + 1 %>"  placeholder="" value="<%= completedSurvey.answers[i].answer %>" readonly> 
+                            <textarea id="answerTextField" class="form-answers readonly-textfield textarea-style" readonly name="answer<%= i + 1 %>"><%= completedSurvey.answers[i].answer %></textarea>
                         </div>              
                 </div><br>
             <% } %>
