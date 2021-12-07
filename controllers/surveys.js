@@ -287,7 +287,7 @@ module.exports.completeSurvey = (req, res, next) => {
 
                 answers.push({
                     "question": req.body["question" + (i + 1)][0],
-                    "answer": req.body["question" + (i + 1)][1]
+                    "answer": req.body["question" + (i + 1)]
                 })
             }
 
