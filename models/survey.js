@@ -2,9 +2,13 @@ let mongoose = require('mongoose');
 
 // create a model class
 let surveyModel = mongoose.Schema({
-    // id: Number,
     name: String,
-    description: String,    
+    description: String,
+    expirationDate: Date,
+    createdBy: mongoose.Schema.Types.ObjectId,    
+    numberOfQuestions: Number,
+    numberOfOptions: Number,
+    surveyQuestions: Array,
 },
 {
     collection: "surveys"

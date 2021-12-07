@@ -5,6 +5,14 @@ a {
     color: #37d1d9;
 }
 
+a:hover {
+    color: #10878d;
+}
+
+body {
+    margin-bottom: 100px;
+}
+
 #homeHere {
     text-decoration: none;
     color:#006fee;
@@ -81,6 +89,11 @@ footer p {
     min-width: 245px;
 }
 
+.readonly-textfield {
+    border: none;
+    outline: none;
+    background-color: transparent;
+}
 
 /*****This class is attached to the Confirmation warning since we did not use btn-danger
 If removed or commented, the 'Are You Sure' warning will break.
@@ -152,4 +165,33 @@ Added dummy style to get rid of empty class warning
 
 .card-img-top {
     height: 270px;
+}
+
+.blue-btn {
+    background-color: #21a9b0 !important;
+    border-color: #37d1d9 !important;
+    color: white;
+}
+
+.blue-btn:hover {
+    background-color: #10878d !important;
+    border-color: #37d1d9 !important;
+    color: white;
+}
+
+.red-btn {
+    background-color: #C84B31 !important;
+    border-color:#C84B31 !important;
+    color: white;
+}
+
+.red-btn:hover {
+    background-color: #993824 !important;
+    border-color:#C84B31 !important;
+    color: white;
+}
+
+.error {
+    color: red;
+    padding: 10px;
 }

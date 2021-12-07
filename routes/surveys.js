@@ -21,14 +21,19 @@ let Survey = require('../models/survey');
 /* GET for survey list - READ operation. */
 router.get('/', requireAuth, surveysController.displaySurveys);
 
-/* GET for survey list - READ operation. */
-router.get('/surveys', requireAuth, surveysController.displaySurveys);
+router.get('/test', surveysController.testSurveys);
+
+router.get('/testComp', surveysController.testCompletedSurvey);
 
 /* GET for displaying the Add Page - CREATE OPERATION */
 router.get('/add', requireAuth, surveysController.displayAddPage);
 
 /* POST for processing the Add Page */
 router.post('/add',  requireAuth, surveysController.processAddPage);
+
+router.get('/add/:surveyId/:numberOfQuestions/:numberOfOptions', requireAuth, surveysController.displayAddQuesionsPage)
+
+router.post('/add/:surveyId/:numberOfQuestions/:numberOfOptions', requireAuth, surveysController.addQuestions);
 
 /* GET for displaying the Edit Page - UPDATE OPERATION */
 router.get('/edit/:id',  requireAuth, surveysController.displayEditPage);
@@ -38,5 +43,17 @@ router.post('/edit/:id',  requireAuth, surveysController.processEditPage);
 
 /* GET for performing the Deletion - DELETE OPERATION */
 router.get('/delete/:id',  requireAuth, surveysController.performDeletion);
+
+/* GET for displaying the complete a survey Page - READ OPERATION */
+router.get('/published',  requireAuth, surveysController.displayPublished);
+
+/* GET for displaying the do survey page */
+router.get('/doSurvey/:id', requireAuth, surveysController.displayDoSurveyPage);
+
+router.post('/doSurvey/:id', requireAuth, surveysController.completeSurvey);
+
+router.get('/completed', requireAuth,  surveysController.displayCompletedSurveys);
+
+router.get('/results/:id', requireAuth, surveysController.viewResults);
 
 module.exports = router;

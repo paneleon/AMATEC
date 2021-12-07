@@ -1,0 +1,51 @@
+<%- include ../partials/header.ejs %>
+
+<%- include ../partials/navigation.ejs %>
+
+
+<!-- Content for the add page-->
+<body>
+<div class="container" id="addDiv">
+    <div class="row">
+        <div class="offset-md-3 col-md-6">
+            <h1  class="title"><%= title %></h1>
+            <form class="form" method="POST">
+            <div class="form-group">
+                <label for="titleTextField" class="fs-4"><strong>Survey Title - </strong></label>
+                <input type="text" class="form-class readonly-textfield fs-5" size="40" id="titleTextField" placeholder="" readonly value="<%= survey.name %>" 
+                name="title">
+            </div><br>
+
+            <div class="form-group">
+                <label for="descTextArea" class="fs-4"><strong>Description - </strong></label><br>
+                <textarea id="descTextArea" class="readonly-textfield" cols="50" rows="5" name="description" placeholder="" readonly ><%= survey.description %></textarea>
+            </div>
+
+            <% for(let i = 0; i < survey.surveyQuestions.length; i++) { %>
+                <div class="form-group">
+                    <label for="titleTextField" class="fs-5"><strong>Question <%= i + 1 %> - </strong></label>
+                    <input type="text" class="form-class readonly-textfield" size="40" id="titleTextField" placeholder="" value="<%= survey.surveyQuestions[i].title %>" readonly  
+                        name="<%= survey.surveyQuestions[i].title %>"><br><br>                
+                    <% for(let j = 0; j < survey.surveyQuestions[i].options.length; j++) { %>
+                        <div class="form-check ms-4">
+                            <input type="radio" id="optionRadio" class="form-check-input" name="question<%= i + 1 %>" value="<%= survey.surveyQuestions[i].options[j] %>">
+                            <label class="form-check-label" for="optionRadio"><%= survey.surveyQuestions[i].options[j] %></label><br>
+                        </div>
+                    <% } %>
+                </div><br>
+            <% } %> 
+            
+            <button class="btn btn-primary blue-btn" type="submit">
+                <i class="fas fa-edit"></i> Submit Answers
+            </button>
+            <a href="/surveys/published" class="btn btn-warning"><i class="fas fa-undo"></i> Cancel</a>
+
+        </form>
+        </div>
+    </div>
+</div>
+</body>
+
+<%- include ../partials/bottom_nav.ejs %>
+
+<%- include ../partials/footer.ejs %>

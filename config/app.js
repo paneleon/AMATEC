@@ -49,7 +49,7 @@ app.use(express.static(path.join(__dirname, '../node_modules')));
 app.use(session({
   secret: "SomeSecret",
   saveUninitialized: false,
-  resave: false
+	resave: false
 }));
 
 // initialize flash
