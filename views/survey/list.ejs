@@ -2,11 +2,18 @@
 <%- include ../partials/navigation.ejs %>
 
 <!-- Main Content -->
+
+<% if (SurveyList.length === 0) { %>
+    <div>               
+        <h1 class="title fs-3">
+            You haven't made any surveys yet click <a href="/surveys/add">Here</a> to get started!
+        </h1>
+    </div>
+<% } else { %>
 <main class="container">
     <div class="row">
         <div class="col-md-offset-3 col-md-14 bottomPad">
-            <div>
-                <!--<span class="badge rounded-pill bg-light mt-3 text-black"> -->
+            <div>               
                 <h1 class="title">
                     Your Surveys
                 </h1>
@@ -63,6 +70,7 @@
         </div>
     </div>
 </main>
+<% } %>
 
 <%- include ../partials/bottom_nav.ejs %>
 
