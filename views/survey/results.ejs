@@ -3,6 +3,13 @@
 <%- include ../partials/navigation.ejs %>
 
 
+<% if (completedSurvey == null) { %>
+    <div>               
+        <h1 class="title fs-3">
+            Sorry... Looks like there have been no responses on this survey yet.  Check back later!
+        </h1>
+    </div>
+<% } else { %>
 <!-- Content for the add page-->
 <body>
 <div class="container">
@@ -40,6 +47,8 @@
     </div>
 </div>
 </body>
+
+<% } %>
 
 <%- include ../partials/bottom_nav.ejs %>
 
