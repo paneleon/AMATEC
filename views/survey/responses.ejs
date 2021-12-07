@@ -1,0 +1,47 @@
+<%- include ../partials/header.ejs %>
+<%- include ../partials/navigation.ejs %>
+
+<!-- Main Content -->
+<main class="container">
+    <div class="row">
+        <div class="col-md-offset-3 col-md-14 bottomPad">
+            <div>
+                <h1 class="title">
+                   
+                </h1>
+            </div>
+            <br />
+                  
+            <a class="btn btn-light btn-outline-dark" href="/surveys/add">
+                    <i class="fas fa-plus-circle"></i> Create New Survey 
+                </a> <br><br>
+
+                <table class="table" id="survey-list">
+                    <thead>
+                <!-- Table containing survey list -->
+                        <tr class="survey-header">
+                            <th class="text-center col-1"><h5>Survey Name</h5></th>
+                            <th class="text-center col-3"><h5>Completed By</h5></th>
+                            <th class="text-center col-4"><h5>Survey Description</h5></th>
+                            <th class="col-1"><h5></h5></th>
+                        </tr>
+                    </thead>
+                <!-- Repeatable Survey Template Div -->
+                <!-- <<TO-DO>> TESTING-->
+                <% for(let count = 0; count < SurveyResponses.length; count++) { %>
+                <tr class="survey">
+                    <td class="text-center col-1"><h3><span class="circle"><%= count + 1 %></span></td>
+                    <td class="text-center col-2"><h3><a><%= SurveyResponses[count].surveyName%></a></h3></h3></td>
+                    <td class="text-center col-2"><h3><a><%= SurveyResponses[count].completedByName %></a></h3></h3></td>
+                    <td class="text-center col-1"><a class="btn btn-light btn-outline-dark" href="/surveys/results/<%= SurveyResponses[count]._id %>">View Result</a></td>
+                </tr>
+                <% } %>
+                
+                </table>                
+        </div>
+    </div>
+</main>
+
+<%- include ../partials/bottom_nav.ejs %>
+
+<%- include ../partials/footer.ejs %>

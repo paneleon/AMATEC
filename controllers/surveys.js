@@ -11,7 +11,9 @@ const { User } = require('../models/user');
 // Display survey list
 module.exports.displaySurveys = (req, res, next) => {
 
-    Survey.find((error, surveyList) => {
+    let userId = req.user._id;
+
+    Survey.find({"createdBy": userId}, (error, surveyList) => {
         if (error){
             return console.log(error);
         } else {
@@ -347,6 +349,27 @@ module.exports.viewResults = (req, res, next) => {
                 title: "Survey Result", 
                 completedSurvey: completedSurvey, 
                 displayName: req.user ? req.user.displayName : '' 
+            });
+        }
+    })
+}
+
+module.exports.viewResponses = (req, res, next) => {
+
+    let responseId = req.params.id;
+
+    CompletedSurvey.find({ surveyId: responseId }, (err, surveyResponses) => {
+        if (err)
+        {
+            console.log(`Error grabbing surveys ${err}`);
+        }
+        else
+        {
+            res.render('survey/responses', 
+            {
+                title: 'Responses',
+                SurveyResponses: surveyResponses, 
+                displayName: req.user ? req.user.displayName : ''
             });
         }
     })

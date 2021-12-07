@@ -56,4 +56,6 @@ router.get('/completed', requireAuth,  surveysController.displayCompletedSurveys
 
 router.get('/results/:id', requireAuth, surveysController.viewResults);
 
+router.get('/responses/:id', requireAuth, surveysController.viewResponses)
+
 module.exports = router;
