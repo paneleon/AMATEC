@@ -31,7 +31,7 @@
             <% for(let i = 0; i < completedSurvey.answers.length; i++) { %>
                 <div class="form-group">
                     <label for="titleTextField" class="fs-5"><strong>Question <%= i + 1 %> - </strong></label>
-                    <input type="text" class="form-class readonly-textfield" id="titleTextField" placeholder="" value="<%= completedSurvey.answers[i].title %>" readonly  
+                    <input type="text" class="form-class readonly-textfield" id="titleTextField" placeholder="" value="<%= completedSurvey.answers[i].question %>" readonly  
                         name="question<%= i + 1 %>"><br><br>                
                         <div class="form-check ms-4">
                          <label for="answerTextField" class="fs-5"><strong>Option Selected -  </strong></label>

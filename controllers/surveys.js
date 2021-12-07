@@ -278,6 +278,7 @@ module.exports.completeSurvey = (req, res, next) => {
     let userCompleted = req.user._id;
     let answers = [];
 
+    console.log(req.body)
     Survey.findById(surveyId, (error, survey) => {
         if (error){
             return console.log(error);
@@ -288,7 +289,7 @@ module.exports.completeSurvey = (req, res, next) => {
             for (let i = 0; i < numberOfQuestions; i++){
 
                 answers.push({
-                    "question": req.body["question" + (i + 1)][0],
+                    "question": req.body["title" + (i + 1)],
                     "answer": req.body["question" + (i + 1)]
                 })
             }
