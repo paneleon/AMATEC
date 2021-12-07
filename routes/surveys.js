@@ -23,6 +23,8 @@ router.get('/', requireAuth, surveysController.displaySurveys);
 
 router.get('/test', surveysController.testSurveys);
 
+router.get('/testComp', surveysController.testCompletedSurvey);
+
 /* GET for displaying the Add Page - CREATE OPERATION */
 router.get('/add', requireAuth, surveysController.displayAddPage);
 
@@ -50,6 +52,8 @@ router.get('/doSurvey/:id', requireAuth, surveysController.displayDoSurveyPage);
 
 router.post('/doSurvey/:id', requireAuth, surveysController.completeSurvey);
 
-router.get('/completed', requireAuth,  surveysController.displayCompletedSurveys)
+router.get('/completed', requireAuth,  surveysController.displayCompletedSurveys);
+
+router.get('/results/:id', requireAuth, surveysController.viewResults);
 
 module.exports = router;

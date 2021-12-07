@@ -228,6 +228,17 @@ module.exports.testSurveys = (req, res, next) => {
     })
 }
 
+module.exports.testCompletedSurvey = (req, res, next) => {
+
+    CompletedSurvey.find((error, surveys) => {
+        if (error){
+            return console.log(error);
+        } else {
+            return res.status(200).send(surveys); 
+        }
+    })
+}
+
 
 module.exports.displayPublished = (req, res, next) => 
 {
@@ -314,6 +325,29 @@ module.exports.displayCompletedSurveys = (req, res, next) => {
             console.log("completed surveys", completedSurveyList)
             res.render("survey/completedSurvey", {title: "Your Completed Surveys", CompletedSurvey: completedSurveyList, 
             displayName: req.user ? req.user.displayName : '', errorMessage: ""});
+        }
+    })
+}
+
+module.exports.viewResults = (req, res, next) => {
+
+    let completedSurveyId = req.params.id;
+    console.log(completedSurveyId);
+
+    CompletedSurvey.findById(completedSurveyId, (error, completedSurvey) => {
+        if (error)
+        {
+            return console.log(`Error retrieving survey: ${error}`);
+        }
+        else
+        {
+            console.log('This block is running');
+            console.log(completedSurvey)
+            res.render('survey/results', {
+                title: "Survey Result", 
+                completedSurvey: completedSurvey, 
+                displayName: req.user ? req.user.displayName : '' 
+            });
         }
     })
 }
