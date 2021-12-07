@@ -89,7 +89,7 @@ footer p {
     min-width: 245px;
 }
 
-.do-survey-question {
+.readonly-textfield {
     border: none;
     outline: none;
     background-color: transparent;
