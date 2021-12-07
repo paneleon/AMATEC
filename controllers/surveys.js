@@ -353,3 +353,24 @@ module.exports.viewResults = (req, res, next) => {
         }
     })
 }
+
+module.exports.viewResponses = (req, res, next) => {
+
+    let responseId = req.params.id;
+
+    CompletedSurvey.find({ surveyId: responseId }, (err, surveyResponses) => {
+        if (err)
+        {
+            console.log(`Error grabbing surveys ${err}`);
+        }
+        else
+        {
+            res.render('survey/responses', 
+            {
+                title: 'Responses',
+                SurveyResponses: surveyResponses, 
+                displayName: req.user ? req.user.displayName : ''
+            });
+        }
+    })
+}
