@@ -11,7 +11,9 @@ const { User } = require('../models/user');
 // Display survey list
 module.exports.displaySurveys = (req, res, next) => {
 
-    Survey.find((error, surveyList) => {
+    let userId = req.user._id;
+
+    Survey.find({"createdBy": userId}, (error, surveyList) => {
         if (error){
             return console.log(error);
         } else {
