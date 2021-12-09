@@ -5,28 +5,30 @@
 
 <main class="container">
    <div class="row">
-    <div class="col-md-offset-3 col-md-14 bottomPad">
-        <h1  class="title"><%= title %></h1>
+    <div class="offset-md-3 col-md-6 bottomPad">
+        <h1  class="title my-5"><%= title %></h1>
         <form class="form" method="POST">
+        
             <% for(let i = 1; i <= numberOfQuestions; i++) { %>
 
-
-                <input type="text" class="form-class" size="100" placeholder="Enter the Question"
+                <div class="">
+                <input type="text" class="form-control m-2" size="100" placeholder="Enter the Question"
                  name="<%= `question${i}` %>" required>
-                 
-
                 <% for(let j = 1; j <= numberOfOptions; j++) { %>
-                    <input type="text" class="form-class" size="50" class="questionOption" placeholder="Enter the Option"
+                    <input type="text" class="form-control m-1 mx-5 add-questions-input" size="50" class="questionOption" placeholder="Enter the Option"
                     name="<%= `question${i}Option${j}` %>" required>
                 <% } %>
-
+                <div>
+                <br>
             <% } %>
+            
         </form>
-            <a href="/surveys" class="btn btn-primary" type="submit">
+            <div class="d-flex flex-row justify-content-center">
+            <a href="/surveys" class="btn btn-primary blue-btn mx-1" type="submit">
                 <i class="fas fa-edit"></i> Submit
             </a>
-            <a href="/surveys" class="btn btn-warning"><i class="fas fa-undo"></i> Cancel</a>
-            
+            <a href="/surveys" class="btn btn-warning mx-1"><i class="fas fa-undo"></i> Cancel</a>
+            </div>
 
 </div>
 </div>
