@@ -216,7 +216,7 @@ module.exports.addQuestions = (req, res, next) => {
 
 
 module.exports.displayAddQuesionsPage = (req, res, next) => {
-    res.render('survey/addQuestions', { title: 'Add Questions', numberOfQuestions: req.params.numberOfQuestions, numberOfOptions: req.params.numberOfOptions});
+    res.render('survey/addQuestions', { title: 'Add Questions', numberOfQuestions: req.params.numberOfQuestions, numberOfOptions: req.params.numberOfOptions, surveyId: req.params.surveyId});
 };
 
 module.exports.testSurveys = (req, res, next) => {
