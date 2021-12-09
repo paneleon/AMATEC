@@ -12,40 +12,42 @@
             <form class="form" method="POST">
             <div class="form-group">
                 <label for="titleTextField">Survey Title</label><br>
-                <input type="text" class="form-class" size="40" id="titleTextField" placeholder="Enter the title"
+                <input type="text" class="form-control m-1" size="40" id="titleTextField" placeholder="Enter the title"
                 name="name" required>
             </div><br>
 
             <div class="form-group">
                 <label for="descTextArea">Description</label><br>
-                <textarea id="descTextArea" cols="50" rows="5" name="description" placeholder="Enter the description..."></textarea>
+                <textarea id="descTextArea" class="form-control m-1" cols="50" rows="5" name="description" placeholder="Enter the description..."></textarea>
             </div><br>
 
              <div class="form-group">
                 <label for="expiryDateInput">Expiration Date</label><br>
-               <input type="date" class="form-control"
+               <input type="date" class="form-control m-1"
                value="0000-00-00" name="expirationDate" id="expiryDate">
             </div><br>
 
             <!-- To be added to schema-->
              <div class="form-group">
                 <label for="numQuesTextField">Number of Questions</label><br>
-                <input type="text" class="form-class" size="40" id="numQuesTextField" placeholder="Enter the number of questions" name ="numQuestions"
+                <input type="text" class="form-control m-1" size="40" id="numQuesTextField" placeholder="Enter the number of questions" name ="numQuestions"
                 required>
             </div><br>
 
              <!-- To be added to schema-->
              <div class="form-group">
                 <label for="numOptionsTextField">Number of Options</label><br>
-                <input type="text" class="form-class" size="40" id="numOptionsTextField" placeholder="Enter the number of options" name ="numOptions"
+                <input type="text" class="form-control m-1" size="40" id="numOptionsTextField" placeholder="Enter the number of options" name ="numOptions"
                 required>
             </div><br>
 
-            <button class="btn btn-primary blue-btn" type="submit">
+
+             <div class="d-flex flex-row justify-content-center">
+            <button class="btn btn-primary blue-btn mx-1" type="submit">
                 <i class="fas fa-edit"></i> Continue To Add Questions
             </button>
-            <a href="/surveys" class="btn btn-warning"><i class="fas fa-undo"></i> Cancel</a>
-
+            <a href="/surveys" class="btn btn-warning mx-1"><i class="fas fa-undo"></i> Cancel</a>
+            </div>
         </form>
         </div>
     </div>

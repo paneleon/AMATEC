@@ -199,3 +199,11 @@ Added dummy style to get rid of empty class warning
     color: red;
     padding: 10px;
 }
+
+.edit-input {
+    width: 90%;
+}
+
+.add-questions-input {
+    width: 87%;
+}
