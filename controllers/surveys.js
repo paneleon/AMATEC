@@ -286,11 +286,16 @@ module.exports.completeSurvey = (req, res, next) => {
             let numberOfQuestions = survey.numberOfQuestions;
             console.log("number of questions", numberOfQuestions);
 
+            console.log(req.body);            
             for (let i = 0; i < numberOfQuestions; i++){
+
+                let answer = (req.body["question" + (i + 1)] !== undefined) ? req.body["question" + (i + 1)] : '**This question was left unanswered!';
+                console.log('Answer: ' + answer);
 
                 answers.push({
                     "question": req.body["title" + (i + 1)],
-                    "answer": req.body["question" + (i + 1)]
+                    //"answer": req.body["question" + (i + 1)]
+                    "answer": answer
                 })
             }
 
