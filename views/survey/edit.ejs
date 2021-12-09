@@ -3,9 +3,8 @@
 <%- include ../partials/navigation.ejs %>
 
 <!-- Content for the Edit Page -->
-<body id="editBody">
-    <div class="container">
-        <div class="row">
+<body id="">
+    <div class="">
             <div class="offset-md-3 col-md-6">
                 <h1 class="title"><%= title %></h1>
 
@@ -42,37 +41,40 @@
                     
                     
                     <% if (surveys.numberOfQuestions && surveys.numberOfOptions) { %>
-                    <div class="form-group p-2">
 
                     <% for(let i = 1; i <= surveys.numberOfQuestions; i++) { %>
+                    <div class="container">
 
-                        <input type="text" class="form-class " size="100" placeholder="Enter the Question"
-                        name="<%= `question${i}` %>" required value="<%= surveys.surveyQuestions[i-1].title %>">
+                        <input type="text" class="form-control m-2" size="100" placeholder="Enter the Question"
+                        name="<%= `question${i}` %>" required value="<%= surveys.surveyQuestions[i-1]?.title %>">
 
                         <% for(let j = 1; j <= surveys.numberOfOptions; j++) { %>
-                            <input type="text" class="form-class " size="50" class="questionOption" placeholder="Enter the Option"
-                            name="<%= `question${i}Option${j}` %>" required value="<%= surveys.surveyQuestions[i-1].options[j-1] %>">
+                            <input type="text" class="form-control m-1 ms-5 edit-input" size="50" class="questionOption" placeholder="Enter the Option"
+                            name="<%= `question${i}Option${j}` %>" required value="<%= surveys.surveyQuestions[i-1]?.options[j-1] %>">
                         <% } %>
                     </div><br>
 
                     <% } %>
 
+                    
+
                    <% } else { %>
                         <h5>Sorry, the survey was created without any questions initially. 
                         If you want to add that functionality, please delete the current survey and create a new one.</h5>
                     <% } %>
-                     
 
-                    <button class="btn btn-primary blue-btn p-2" type="submit" id="editBtn">
+                    <div class="d-flex flex-row justify-content-center">
+                    <button class="btn btn-primary blue-btn p-2 mx-1" type="submit" id="editBtn">
                         <i class="fas fa-edit"></i>Submit
                     </button>
 
-                    <a href="/surveys" class="btn btn-warning p-2" id="deleteBtn">
+                    <a href="/surveys" class="btn btn-warning p-2 mx-1" id="deleteBtn">
                         <i class="fas fa-undo"></i>Cancel
                     </a>
+
+                    </div>
                 </form>
             </div>
-        </div>
     </div>
 </body>
 
