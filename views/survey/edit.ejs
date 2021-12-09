@@ -28,8 +28,6 @@
                     required>
                     </div> <br>
 
-                    
-
                     <div class="form-group p-2">
                         <label for="expiryDateInput">Expiration Date</label><br>
 
@@ -48,11 +46,11 @@
 
                     <% for(let i = 1; i <= surveys.numberOfQuestions; i++) { %>
 
-                        <input type="text" class="form-class pt-1" size="100" placeholder="Enter the Question"
+                        <input type="text" class="form-class " size="100" placeholder="Enter the Question"
                         name="<%= `question${i}` %>" required value="<%= surveys.surveyQuestions[i-1].title %>">
 
                         <% for(let j = 1; j <= surveys.numberOfOptions; j++) { %>
-                            <input type="text" class="form-class pt-1" size="50" class="questionOption" placeholder="Enter the Option"
+                            <input type="text" class="form-class " size="50" class="questionOption" placeholder="Enter the Option"
                             name="<%= `question${i}Option${j}` %>" required value="<%= surveys.surveyQuestions[i-1].options[j-1] %>">
                         <% } %>
                     </div><br>
