@@ -23,8 +23,8 @@
 
             <% for(let i = 0; i < survey.surveyQuestions.length; i++) { %>
                 <div class="form-group">
-                    <label for="titleTextField" class="fs-5"><strong>Question <%= i + 1 %> - </strong></label>
-                    <input type="text" class="form-class readonly-textfield" size="40" id="titleTextField" placeholder="" name="title<%= i + 1 %>" value="<%= survey.surveyQuestions[i].title %>" readonly><br><br>                
+                    <label for="titleTextField" class="fs-5"><strong>Question <%= i + 1 %> - </strong></label><br>
+                    <textarea type="text" class="form-class readonly-textfield textarea-style" size="40" id="titleTextField" name="title<%= i + 1 %>" readonly><%= survey.surveyQuestions[i].title %></textarea><br>      
                     <% for(let j = 0; j < survey.surveyQuestions[i].options.length; j++) { %>
                         <div class="form-check ms-4">
                             <input type="radio" id="optionRadio" class="form-check-input" name="question<%= i + 1 %>" value="<%= survey.surveyQuestions[i].options[j] %>">
