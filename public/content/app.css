@@ -209,3 +209,7 @@ Added dummy style to get rid of empty class warning
 .add-questions-input {
     width: 87%;
 }
+
+.blue {
+    color: #37d1d9;
+}
