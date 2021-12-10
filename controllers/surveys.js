@@ -313,7 +313,7 @@ module.exports.completeSurvey = (req, res, next) => {
                     res.end(error);
                 } else {
                     console.log("sucessfully created completed survey", completedSurvey);
-                    res.redirect('/surveys');
+                    res.redirect('/surveys/completed');
                 }
             });
 
