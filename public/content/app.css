@@ -95,6 +95,12 @@ footer p {
     background-color: transparent;
 }
 
+.textarea-style {
+    width: 400px;
+    height: auto;
+    resize: none;
+}
+
 /*****This class is attached to the Confirmation warning since we did not use btn-danger
 If removed or commented, the 'Are You Sure' warning will break.
 Added dummy style to get rid of empty class warning
@@ -194,4 +200,16 @@ Added dummy style to get rid of empty class warning
 .error {
     color: red;
     padding: 10px;
+}
+
+.edit-input {
+    width: 90%;
+}
+
+.add-questions-input {
+    width: 87%;
+}
+
+.blue {
+    color: #37d1d9;
 }

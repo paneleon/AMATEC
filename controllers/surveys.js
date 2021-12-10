@@ -11,7 +11,9 @@ const { User } = require('../models/user');
 // Display survey list
 module.exports.displaySurveys = (req, res, next) => {
 
-    Survey.find((error, surveyList) => {
+    let userId = req.user._id;
+
+    Survey.find({"createdBy": userId}, (error, surveyList) => {
         if (error){
             return console.log(error);
         } else {
@@ -214,7 +216,7 @@ module.exports.addQuestions = (req, res, next) => {
 
 
 module.exports.displayAddQuesionsPage = (req, res, next) => {
-    res.render('survey/addQuestions', { title: 'Add Questions', numberOfQuestions: req.params.numberOfQuestions, numberOfOptions: req.params.numberOfOptions});
+    res.render('survey/addQuestions', { title: 'Add Questions', numberOfQuestions: req.params.numberOfQuestions, numberOfOptions: req.params.numberOfOptions, surveyId: req.params.surveyId});
 };
 
 module.exports.testSurveys = (req, res, next) => {
@@ -276,6 +278,7 @@ module.exports.completeSurvey = (req, res, next) => {
     let userCompleted = req.user._id;
     let answers = [];
 
+    console.log(req.body)
     Survey.findById(surveyId, (error, survey) => {
         if (error){
             return console.log(error);
@@ -283,11 +286,16 @@ module.exports.completeSurvey = (req, res, next) => {
             let numberOfQuestions = survey.numberOfQuestions;
             console.log("number of questions", numberOfQuestions);
 
+            console.log(req.body);            
             for (let i = 0; i < numberOfQuestions; i++){
 
+                let answer = (req.body["question" + (i + 1)] !== undefined) ? req.body["question" + (i + 1)] : '**This question was left unanswered!';
+                console.log('Answer: ' + answer);
+
                 answers.push({
-                    "question": req.body["question" + (i + 1)][0],
-                    "answer": req.body["question" + (i + 1)]
+                    "question": req.body["title" + (i + 1)],
+                    //"answer": req.body["question" + (i + 1)]
+                    "answer": answer
                 })
             }
 
@@ -305,7 +313,7 @@ module.exports.completeSurvey = (req, res, next) => {
                     res.end(error);
                 } else {
                     console.log("sucessfully created completed survey", completedSurvey);
-                    res.redirect('/surveys');
+                    res.redirect('/surveys/completed');
                 }
             });
 
@@ -347,6 +355,27 @@ module.exports.viewResults = (req, res, next) => {
                 title: "Survey Result", 
                 completedSurvey: completedSurvey, 
                 displayName: req.user ? req.user.displayName : '' 
+            });
+        }
+    })
+}
+
+module.exports.viewResponses = (req, res, next) => {
+
+    let responseId = req.params.id;
+
+    CompletedSurvey.find({ surveyId: responseId }, (err, surveyResponses) => {
+        if (err)
+        {
+            console.log(`Error grabbing surveys ${err}`);
+        }
+        else
+        {
+            res.render('survey/responses', 
+            {
+                title: 'Responses',
+                SurveyResponses: surveyResponses, 
+                displayName: req.user ? req.user.displayName : ''
             });
         }
     })

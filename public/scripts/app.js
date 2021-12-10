@@ -4,7 +4,7 @@
         console.log('Front end Scripts working!');
     }
 
-    let deleteButtons = document.querySelectorAll('.delete');
+    let deleteButtons = document.querySelectorAll('#delete');
 
     for(button of deleteButtons)
     {

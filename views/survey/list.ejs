@@ -2,10 +2,22 @@
 <%- include ../partials/navigation.ejs %>
 
 <!-- Main Content -->
+
+<% if (SurveyList.length === 0) { %>
+    <div>               
+        <h1 class="title fs-3">
+            You haven't made any surveys yet click <a href="/surveys/add">Here</a> to get started!
+        </h1>
+    </div>
+<% } else { %>
 <main class="container">
     <div class="row">
         <div class="col-md-offset-3 col-md-14 bottomPad">
-            <%- include ../partials/title.ejs %>
+            <div>               
+                <h1 class="title">
+                    Your Surveys
+                </h1>
+            </div>
             <br />
 
             <h6 class="error"><%= errorMessage %></h6>
@@ -20,9 +32,9 @@
                         <tr class="survey-header">
                             <th class="text-center col-1"><h5>Survey #</h5></th>
                             <th class="text-center col-3"><h5>Survey Name</h5></th>
-                            <th class="text-center col-4"><h5>Description</h5></th>
-                            <th class="text-center col-2"><h5>Expires On</h5></th>
-                            <th class="text-center col-1"><h5>No. of Responses</h5></th>
+                            <th class="text-center col-5"><h5>Description</h5></th>
+                            <th class="text-center col-1"><h5>Expires On</h5></th>
+                            <th class="text-center col-1"><h5></h5></th>
                             <th class="col-1"><h5></h5></th>
                             <th class="col-1"><h5></h5></th>
                         </tr>
@@ -35,15 +47,18 @@
                     <td class="text-center col-2"><h3><a><%= SurveyList[count].name %></a></h3></h3></td>
                     <td class="text-center col-5"><p><%= SurveyList[count].description %></p></td>
                     <td class="text-center col-2"><%= new Intl.DateTimeFormat('en-GB', { year: 'numeric', month: 'long', day: '2-digit'}).format(SurveyList[count].expirationDate) %></td>
-                    <td class="text-center col-1"></td>
 
                     <% if (loggedUserId.equals(SurveyList[count].createdBy))  { %>
-                    <td class="text-center col-1">
-                    <a class="btn btn-light btn-outline-dark" href="/surveys/edit/<%=SurveyList[count]._id %>">Edit</a></td>
-                    <td class="text-center col-1"><a class="btn btn-danger" href="/surveys/delete/<%=SurveyList[count]._id %>">Delete</a></td>   
+                        <td class="text-center col-1">
+                        <a class="btn btn-info btn-outline-dark" href="/surveys/responses/<%=SurveyList[count]._id %>">Responses</a></td>
+                        <td class="text-center col-1">
+                        <a class="btn btn-light btn-outline-dark" href="/surveys/edit/<%=SurveyList[count]._id %>">Edit</a></td>
+                        <td class="text-center col-1">
+                        <a class="btn btn-danger" id="delete" href="/surveys/delete/<%=SurveyList[count]._id %>">Delete</a></td>   
                     <% } else { %>
-                    <td class="text-center col-1"></td>
-                    <td class="text-center col-1"></td>
+                        <td class="text-center col-1"></td>
+                        <td class="text-center col-1"></td>
+                        <td class="text-center col-1"></td>
                     <% } %>
                 </tr>
                 
@@ -55,6 +70,7 @@
         </div>
     </div>
 </main>
+<% } %>
 
 <%- include ../partials/bottom_nav.ejs %>
 

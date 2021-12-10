@@ -1,16 +1,23 @@
 <%- include ../partials/header.ejs %>
 <%- include ../partials/navigation.ejs %>
 
+
+<% if (SurveyResponses.length === 0) { %>
+    <div>               
+        <h1 class="title fs-3">
+            Sorry... Looks like there have been no responses on this survey yet.  Check back later!
+        </h1>
+    </div>
+<% } else { %>
 <!-- Main Content -->
 <main class="container">
     <div class="row">
         <div class="col-md-offset-3 col-md-14 bottomPad">
-            
-        <div>            
-            <h1 class="title">
-                Your Completed Survey History
-            </h1>
-        </div>
+            <div>
+                <h1 class="title">
+                   
+                </h1>
+            </div>
             <br />
                   
             <a class="btn btn-light btn-outline-dark" href="/surveys/add">
@@ -21,20 +28,20 @@
                     <thead>
                 <!-- Table containing survey list -->
                         <tr class="survey-header">
-                            <th class="text-center col-1"><h5>Survey #</h5></th>
-                            <th class="text-center col-3"><h5>Completed by</h5></th>
-                            <th class="text-center col-4"><h5>Survey Name</h5></th>
+                            <th class="text-center col-1"><h5>Survey Name</h5></th>
+                            <th class="text-center col-3"><h5>Completed By</h5></th>
+                            <th class="text-center col-4"><h5>Survey Description</h5></th>
                             <th class="col-1"><h5></h5></th>
                         </tr>
                     </thead>
                 <!-- Repeatable Survey Template Div -->
                 <!-- <<TO-DO>> TESTING-->
-                <% for(let count = 0; count < CompletedSurvey.length; count++) { %>
+                <% for(let count = 0; count < SurveyResponses.length; count++) { %>
                 <tr class="survey">
                     <td class="text-center col-1"><h3><span class="circle"><%= count + 1 %></span></td>
-                    <td class="text-center col-2"><h3><a><%= CompletedSurvey[count].completedByName %></a></h3></h3></td>
-                    <td class="text-center col-2"><h3><a><%= CompletedSurvey[count].surveyName %></a></h3></h3></td>
-                    <td class="text-center col-1"><a class="btn btn-light btn-outline-dark" href="/surveys/results/<%= CompletedSurvey[count]._id %>">View Result</a></td>
+                    <td class="text-center col-2"><h3><a><%= SurveyResponses[count].surveyName%></a></h3></h3></td>
+                    <td class="text-center col-2"><h3><a><%= SurveyResponses[count].completedByName %></a></h3></h3></td>
+                    <td class="text-center col-1"><a class="btn btn-light btn-outline-dark" href="/surveys/results/<%= SurveyResponses[count]._id %>">View Result</a></td>
                 </tr>
                 <% } %>
                 
@@ -42,8 +49,8 @@
         </div>
     </div>
 </main>
+<% } %>
 
 <%- include ../partials/bottom_nav.ejs %>
 
 <%- include ../partials/footer.ejs %>
-

@@ -3,32 +3,37 @@
 <%- include ../partials/navigation.ejs %>
 
 
+<% if (completedSurvey == null) { %>
+    <div>               
+        <h1 class="title fs-3">
+            Sorry... Looks like there have been no responses on this survey yet.  Check back later!
+        </h1>
+    </div>
+<% } else { %>
 <!-- Content for the add page-->
 <body>
 <div class="container">
     <div class="row">
         <div class="offset-md-3 col-md-6">
-            <h1  class="title"><%= title %></h1>
+            <h1  class="title my-5"><%= title %></h1>
             <form class="form" method="POST">
             <div class="form-group">
-                <label for="titleTextField" class="fs-4"><strong>Survey Title - </strong></label>
-                <input type="text" class="form-class readonly-textfield fs-5" id="titleTextField" placeholder="" readonly value="<%= completedSurvey.surveyName %>" 
-                name="title">
+                <label for="titleTextField" class="fs-4"><strong>Survey Title: </strong></label>
+                <h4 class="form-class readonly-textfield fs-4 blue"><%= completedSurvey.surveyName %></h4>
             </div><br>
 
             <div class="form-group">
-                <label for="completedBy" class="fs-4"><strong>Completed By - </strong></label>
-                <input id="completedBy" type="text" class="readonly-textfield" name="completedByName" placeholder="" readonly value="<%= completedSurvey.completedByName %>">
+                <label for="completedBy" class="fs-4"><strong>Completed By: </strong></label>
+                <h4 class="readonly-textfield blue"><%= completedSurvey.completedByName %></h4>
             </div><br><br>
 
             <% for(let i = 0; i < completedSurvey.answers.length; i++) { %>
                 <div class="form-group">
-                    <label for="titleTextField" class="fs-5"><strong>Question <%= i + 1 %> - </strong></label>
-                    <input type="text" class="form-class readonly-textfield" id="titleTextField" placeholder="" value="<%= completedSurvey.answers[i].title %>" readonly  
-                        name="question<%= i + 1 %>"><br><br>                
+                    <label for="titleTextField" class="fs-5"><strong>Question <%= i + 1 %>: </strong></label><br>
+                    <h5 class="form-class readonly-textfield blue"><%= completedSurvey.answers[i].question %></h5><br>                
                         <div class="form-check ms-4">
-                         <label for="answerTextField" class="fs-5"><strong>Option Selected -  </strong></label>
-                            <input type="text" id="answerTextField" class="form-answers" name="answer<%= i + 1 %>"  placeholder="" value="<%= completedSurvey.answers[i].answer %>" readonly> 
+                         <label for="answerTextField" class="fs-5"><strong>Option Selected: </strong></label>
+                            <h6 class="form-answers readonly-textfield blue"><%= completedSurvey.answers[i].answer %></h6>
                         </div>              
                 </div><br>
             <% } %>
@@ -37,9 +42,11 @@
 
         </form>
         </div>
-    </div>
+    </div> 
 </div>
 </body>
+
+<% } %>
 
 <%- include ../partials/bottom_nav.ejs %>
 
